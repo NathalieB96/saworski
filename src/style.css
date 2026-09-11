@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/poppins-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+
+  --text-h1: 48px;
+  --text-h1--line-height: 64px;
+  --text-h1--font-weight: 700;
+
+  --text-h2: 32px;
+  --text-h2--font-weight: 700;
+
+  --text-h3: 28px;
+  --text-h3--font-weight: 700;
+
+  --text-h4: 24px;
+  --text-h4--font-weight: 400;
+
+  --text-body: 20px;
+  --text-body-2: 16px;
+
+  --color-primary: #0043FA;
+  --color-secondary-light: #ACF019;
+  --color-secondary-dark: #9BC915;
+  --color-neutral-900: #02091D;
+  --color-neutral-200: #F5F5F5;
+  --color-neutral-100: #FCFCFC;
+}
+
+h1, h2, h3, h4 {
+  font-feature-settings: 'liga' off, 'clig' off;
+}
