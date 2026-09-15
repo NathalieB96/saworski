@@ -50,3 +50,9 @@ npm run build
 Output goes to `dist/`.
 
 ## Project Structure
+
+- `src/main.js` — entry point; imports `style.css` and mounts the shared header/footer on `DOMContentLoaded`.
+- `src/components/` — reusable UI building blocks shared across all six pages via plain JS injection (no templating plugin). Each module exports a `mount<Name>(rootEl)` function that renders markup into a placeholder element present on every page, e.g. `<header data-component="header"></header>`.
+  - `header.js` — site header: logo, "Kurse" dropdown, "Kontakt" link, "Jetzt buchen" CTA, mobile hamburger menu.
+  - `footer.js` — site footer: copyright, legal links (Datenschutz, Impressum).
+- `public/icons/` — icon library (individual SVG files, e.g. `ArrowRight.svg`, `X.svg`, `CaretRight.svg`), referenced via `<img src="/icons/Name.svg">`.
