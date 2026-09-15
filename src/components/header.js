@@ -52,7 +52,10 @@ function markup() {
 
         <a href="${NAV_LINKS.kontakt}" data-nav-link class="font-inter text-body-2 text-neutral-900 aria-[current=page]:text-primary">Kontakt</a>
 
-        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-full bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">Jetzt buchen</a>
+        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+          Jetzt buchen
+          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+        </a>
       </nav>
 
       <button
@@ -81,7 +84,10 @@ function markup() {
           )
           .join('')}
         <a href="${NAV_LINKS.kontakt}" data-nav-link class="font-inter text-body-2 text-neutral-900 aria-[current=page]:text-primary">Kontakt</a>
-        <a href="${NAV_LINKS.booking}" class="inline-flex w-fit items-center gap-2 rounded-full bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">Jetzt buchen</a>
+        <a href="${NAV_LINKS.booking}" class="inline-flex w-fit items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+          Jetzt buchen
+          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+        </a>
       </nav>
     </div>
   `
