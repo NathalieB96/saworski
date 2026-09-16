@@ -23,6 +23,7 @@ This is a **multi-page site**, not an SPA. Each HTML file at the repo root is a 
 - Icons live in `public/icons/` as individual SVG files (Phosphor-style, `viewBox="0 0 24 24"`, hardcoded `stroke="black"`) — referenced via `<img src="/icons/Name.svg">`, not an SVG sprite.
 - Pages currently reference Tailwind utility classes directly in the HTML using the custom theme tokens (e.g. `text-primary`, `text-h1`) rather than arbitrary values — prefer extending `@theme` in `style.css` over hardcoding new colors/sizes inline. Color usage convention: `neutral-100` is the main page background; `neutral-200` and `primary` are used as alternate section backgrounds in places; text is `neutral-900` on light backgrounds, `white` on the `primary` blue background.
 - `.env` holds `VITE_EMAILJS_PUBLIC_KEY`, `VITE_EMAILJS_SERVICE_ID`, `VITE_EMAILJS_TEMPLATE_ID` — intended for the booking form (`booking.html`) to send emails client-side via EmailJS. Not yet wired up in code.
+- **Every top-level page section uses the same spacing wrapper: `mx-auto max-w-6xl px-6 py-12 lg:py-32`.** This is a fixed, site-wide convention — vertical spacing (`py-12 lg:py-32`, 128px on desktop) is not derived per-section from a Figma frame's own padding value, even if Figma specifies something else for that particular section. Apply it to every new top-level section for consistency across the whole page.
 
 ## Coding Guidelines
 
