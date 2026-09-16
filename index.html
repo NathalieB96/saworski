@@ -11,28 +11,30 @@
     <header data-component="header"></header>
     <main>
       <section class="mx-auto max-w-6xl px-6 py-8 lg:py-24">
-        <div class="grid grid-cols-12 items-center gap-8 lg:gap-12">
-          <div class="col-span-12 lg:col-span-6 lg:order-2">
+        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          <div class="lg:order-2">
             <div class="overflow-hidden rounded-2xl border-8 border-primary">
               <img src="/images/home-hero.jpg" alt="NTG-Lerngruppe beim gemeinsamen Lernen" class="h-full w-full object-cover" />
             </div>
           </div>
 
-          <div class="relative col-span-12 lg:col-span-6 lg:order-1">
-            <img src="/images/illustrations/star.svg" alt="" class="absolute top-0 right-0 lg:-top-8 h-auto w-12 lg:w-14" />
+          <div class="lg:order-1">
+            <div class="relative">
+              <img src="/images/illustrations/star.svg" alt="" class="absolute top-0 right-0 lg:-top-8 h-auto w-12 lg:w-14" />
 
-            <h1 class="font-poppins text-h1 text-neutral-900">
-              NTG gemeinsam begreifen statt allein bangen.
-            </h1>
+              <h1 class="font-poppins text-h1 text-neutral-900">
+                NTG gemeinsam begreifen statt allein bangen.
+              </h1>
 
-            <h4 class="mt-4 font-inter text-h4 text-neutral-900">
-              NTG-Prüfungsvorbereitung. In kleiner Lerngruppe mit maximaler Unterstützung.
-            </h4>
+              <h4 class="mt-4 font-inter text-h4 text-neutral-900">
+                NTG-Prüfungsvorbereitung. In kleiner Lerngruppe mit maximaler Unterstützung.
+              </h4>
 
-            <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
-              Mehr erfahren
-              <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
-            </a>
+              <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+                Mehr erfahren
+                <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -41,55 +43,108 @@
         <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-16 lg:py-30">
           <h2 class="font-poppins text-h1 text-black">Keyfacts auf einen Blick</h2>
 
-          <div class="grid grid-cols-12 gap-10">
-            <div class="col-span-12 flex flex-col gap-6 lg:col-span-6">
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
+            <div class="flex flex-col gap-6">
               <h2 class="font-inter text-h2 text-black">Vorteile:</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/Broadcast.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Übungen online, wann und wo du willst</p>
+                  <p class="min-w-0 font-inter text-body text-black">Übungen online, wann und wo du willst</p>
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/ClockClockwise.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Wöchentliche Unterrichtssession, immer zur gleichen Zeit</p>
+                  <p class="min-w-0 font-inter text-body text-black">Wöchentliche Unterrichtssession, immer zur gleichen Zeit</p>
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/LineSegments.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Klare Struktur und Routine nehmen dir die Prüfungsangst</p>
+                  <p class="min-w-0 font-inter text-body text-black">Klare Struktur und Routine nehmen dir die Prüfungsangst</p>
                 </li>
               </ul>
             </div>
 
-            <div class="col-span-12 flex flex-col gap-6 lg:col-span-6">
+            <div class="flex flex-col gap-6">
               <h2 class="font-inter text-h2 text-black">So lernst du:</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/Lightning.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Aktiv mitmachen statt passiv zuhören</p>
+                  <p class="min-w-0 font-inter text-body text-black">Aktiv mitmachen statt passiv zuhören</p>
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/MathOperations.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Vorrechnen wie in der mündlichen Prüfung</p>
+                  <p class="min-w-0 font-inter text-body text-black">Vorrechnen wie in der mündlichen Prüfung</p>
                 </li>
                 <li class="flex items-center gap-2.5">
                   <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
                     <img src="/icons/UsersThree.svg" alt="" class="size-6" />
                   </span>
-                  <p class="font-inter text-body text-black">Kleine Gruppen – voneinander und miteinander lernen</p>
+                  <p class="min-w-0 font-inter text-body text-black">Kleine Gruppen – voneinander und miteinander lernen</p>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="bg-neutral-100">
+        <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-16 lg:py-30">
+          <h2 class="font-poppins text-h1 text-black text-center">
+            Mit diesen 6 Säulen meistern wir gemeinsam deinen NTG Meister.
+          </h2>
+
+          <ol class="grid list-none grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">01</span>
+              <p class="font-inter text-body text-black">
+                <strong>Mathe & Physik:</strong><br />
+                Grundlagen wirklich verstehen
+              </p>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">02</span>
+              <p class="font-inter text-body text-black">
+                <strong>Fragetechniken:</strong><br />
+                Komplexes einfach machen
+              </p>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">03</span>
+              <p class="font-inter text-body text-black">
+                <strong>Perspektivwechsel:</strong><br />
+                Verstehen durch Erklären
+              </p>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">04</span>
+              <p class="font-inter text-body text-black">
+                <strong>Spielend lernen:</strong><br />
+                Aus Frust wird Neugier
+              </p>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">05</span>
+              <p class="font-inter text-body text-black">
+                <strong>Echter Praxisbezug:</strong><br />
+                Theorie, die dir bekannt vorkommt
+              </p>
+            </li>
+            <li class="flex items-center gap-4">
+              <span class="font-inter text-h1 text-primary">06</span>
+              <p class="font-inter text-body text-black">
+                <strong>Gemeinsam lernen:</strong><br />
+                Zusammen statt allein
+              </p>
+            </li>
+          </ol>
         </div>
       </section>
     </main>
