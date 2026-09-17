@@ -10,17 +10,17 @@
   <body class="bg-neutral-100">
     <header data-component="header"></header>
     <main>
-      <section class="mx-auto max-w-6xl px-6 py-12 md:py-20 lg:py-32">
-        <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
-          <div class="lg:order-2">
-            <div class="overflow-hidden rounded-2xl border-8 border-primary">
-              <img src="/images/home-hero.jpg" alt="NTG-Lerngruppe beim gemeinsamen Lernen" class="h-full w-full object-cover" />
+      <section class="mx-auto max-w-6xl px-6 py-12 md:flex md:h-[calc(100vh-var(--header-height))] md:items-center md:overflow-hidden md:py-20 lg:py-32">
+        <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
+          <div class="md:order-2 md:h-full">
+            <div class="overflow-hidden rounded-2xl border-8 border-primary md:h-full md:w-full">
+              <img src="/images/home-hero.jpg" alt="NTG-Lerngruppe beim gemeinsamen Lernen" class="h-auto w-full md:h-full md:w-full md:object-cover" />
             </div>
           </div>
 
-          <div class="lg:order-1">
+          <div class="md:order-1 md:flex md:h-full md:flex-col md:justify-center">
             <div class="relative">
-              <img src="/images/illustrations/star.svg" alt="" class="absolute top-0 right-0 lg:-top-8 h-auto w-12 lg:w-14" />
+              <img src="/images/illustrations/star.svg" alt="" class="hidden md:block absolute top-0 right-0 md:-top-8 h-auto w-12 md:w-14" />
 
               <h1 class="font-poppins text-h1 text-neutral-900">
                 NTG gemeinsam begreifen statt allein bangen.

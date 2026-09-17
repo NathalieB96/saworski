@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --header-height: 80px;
+}
+
 @font-face {
   font-family: "Poppins";
   src: url("/fonts/poppins-regular.woff2") format("woff2");
