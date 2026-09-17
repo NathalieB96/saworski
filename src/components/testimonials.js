@@ -60,7 +60,7 @@ function renderCard(testimonial, index) {
 
 function markup() {
   return `
-    <div class="mx-auto max-w-6xl px-6 py-12 lg:py-32">
+    <div class="mx-auto max-w-6xl px-6 py-12 md:py-20 lg:py-32">
       <h2 id="testimonials-heading" class="font-poppins text-h1 text-center text-black">Das sagen meine Kursbesucher</h2>
 
       <div role="region" aria-roledescription="carousel" aria-labelledby="testimonials-heading" class="mt-10">
