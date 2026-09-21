@@ -7,8 +7,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
-        kurs1: 'kurs-ntg.html',
-        kurs2: 'kurs-retreat.html',
+        kurs1: 'ntg-begleitkurs.html',
+        kurs2: 'ntg-kurs-retreat.html',
         booking: 'booking.html',
         impressum: 'impressum.html',
         datenschutz: 'datenschutz.html',

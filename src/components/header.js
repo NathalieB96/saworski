@@ -1,7 +1,7 @@
 const NAV_LINKS = {
   kurse: [
-    { label: 'NTG Kurs mit Retreat', href: '/kurs-retreat.html' },
-    { label: 'NTG Begleitkurs', href: '/kurs-ntg.html' },
+    { label: 'NTG Kurs mit Retreat', href: '/ntg-kurs-retreat.html' },
+    { label: 'NTG Begleitkurs', href: '/ntg-begleitkurs.html' },
   ],
   booking: '/booking.html',
 }

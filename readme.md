@@ -14,8 +14,8 @@ Website built with Vite, Tailwind CSS v4, and vanilla JavaScript.
 | File | Description |
 |---|---|
 | `index.html` | Homepage |
-| `kurs-ntg.html` | Course page: NTG Begleitkurs |
-| `kurs-retreat.html` | Course page: Retreat |
+| `ntg-begleitkurs.html` | Course page: NTG Begleitkurs |
+| `ntg-kurs-retreat.html` | Course page: Retreat |
 | `booking.html` | Course booking form |
 | `impressum.html` | Legal notice |
 | `datenschutz.html` | Privacy policy |
