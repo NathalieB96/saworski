@@ -68,6 +68,7 @@
   --text-body-2--line-height: 1.3;
 
   --color-primary: #0043FA;
+  --color-primary-light: #5C85FF;
   --color-secondary-light: #ACF019;
   --color-secondary-dark: #9BC915;
   --color-neutral-900: #02091D;
@@ -75,6 +76,11 @@
   --color-neutral-100: #FCFCFC;
   --color-black: #000000;
   --color-white: #FFFFFF;
+
+  /* Tageszeit-Badges in der Kurstermine-Liste: feste, eigene Farben, keine bestehenden Tokens */
+  --color-badge-spaet: #DBC4FF;
+  --color-badge-fruh: #D2FF93;
+  --color-badge-wechsel: #FFE68A;
 }
 
 h1, h2, h3, h4 {
