@@ -44,7 +44,7 @@ function markup() {
           </div>
         </div>
 
-        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl border-2 border-neutral-900 bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
           <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
         </a>
@@ -74,7 +74,7 @@ function markup() {
             (link) => `<a href="${link.href}" class="font-inter text-body-2 text-neutral-900">${link.label}</a>`
           )
           .join('')}
-        <a href="${NAV_LINKS.booking}" class="inline-flex w-fit items-center gap-2 rounded-2xl border-2 border-neutral-900 bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${NAV_LINKS.booking}" class="inline-flex w-fit items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
           <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
         </a>
