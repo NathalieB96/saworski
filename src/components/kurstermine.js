@@ -134,7 +134,7 @@ function renderPrice(termin, alignEnd) {
 }
 
 const BUTTON_CLASSES =
-  'inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900'
+  'inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900'
 
 function desktopOuterClass(termin) {
   return termin.retreat
@@ -171,7 +171,7 @@ function renderDesktopRow(termin) {
       ${renderPrice(termin, false)}
       <a href="/booking.html" class="${BUTTON_CLASSES} ${buttonJustifyClass(termin)}">
         Platz sichern
-        <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+        <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
       </a>
     </div>
   `
@@ -202,7 +202,7 @@ function renderMobileCard(termin) {
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
       <a href="/booking.html" class="${BUTTON_CLASSES} w-full justify-center">
         Platz sichern
-        <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+        <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
       </a>
     </div>
   `
@@ -279,9 +279,9 @@ function markup(state) {
 
       <div class="flex flex-col items-center gap-6 text-center">
         <p class="font-inter text-body text-white">Du hast Interesse, aber die angebotenen Termine passen dir nicht? Teil uns mit, welche Termine dir passen würden – wir lassen dich wissen, sobald ein Kurs zu einem deiner Wunschtermine startet.</p>
-        <a href="${WUNSCHTERMIN_FORM_URL}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${WUNSCHTERMIN_FORM_URL}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Wunschtermin
-          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+          <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
         </a>
       </div>
     </div>
