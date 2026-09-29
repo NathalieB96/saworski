@@ -6,8 +6,8 @@ const FRUEHBUCHER_TAGE = 56
 const WUNSCHTERMIN_FORM_URL = '#wunschtermin' // TODO: replace with real form URL once available
 
 const PRUEFUNG_OPTIONS = [
-  { value: 'fruehjahr', label: 'Frühjahrprüfung' },
-  { value: 'herbst', label: 'Herbstprüfung' },
+  { value: 'fruehjahr', label: 'Frühjahr' },
+  { value: 'herbst', label: 'Herbst' },
 ]
 
 const TAGESZEIT_OPTIONS = [
@@ -145,7 +145,7 @@ function desktopOuterClass(termin) {
 function desktopGridColsClass(termin) {
   return termin.retreat
     ? 'xl:grid-cols-[10rem_9rem_12rem_12rem_6rem_1fr]'
-    : 'lg:grid-cols-[12.5rem_11rem_17rem_8rem_1fr]'
+    : 'lg:grid-cols-[11rem_11rem_14rem_6rem_1fr]'
 }
 
 function buttonJustifyClass(termin) {

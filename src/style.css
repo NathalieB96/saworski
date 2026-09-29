@@ -98,6 +98,12 @@ h1, h2, h3, h4 {
   hyphens: auto;
 }
 
+a.text-body, a.text-body-2, button.text-body, button.text-body-2 {
+  overflow-wrap: normal;
+  hyphens: none;
+  white-space: nowrap;
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
