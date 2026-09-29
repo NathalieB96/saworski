@@ -1,35 +1,47 @@
 const NAV_LINKS = {
   kurse: [
-    { label: 'NTG Kurs mit Retreat', href: '/ntg-kurs-retreat.html' },
     { label: 'NTG Begleitkurs', href: '/ntg-begleitkurs.html' },
+    { label: 'NTG Kurs mit Retreat', href: '/ntg-kurs-retreat.html' },
   ],
   booking: '/booking.html',
 }
 
-function renderKurseLinks() {
-  return NAV_LINKS.kurse
-    .map(
-      (link) => `
-      <a href="${link.href}" role="menuitem" class="block whitespace-nowrap px-4 py-2 font-inter text-body-2 text-neutral-900 hover:bg-primary/20">
+function renderKurseLinkRow(link, isLast) {
+  return `
+    <div${isLast ? '' : ' class="border-b border-neutral-500 pb-2"'}>
+      <a href="${link.href}" role="menuitem" class="flex items-center justify-between gap-4 font-inter text-body text-black">
         ${link.label}
-      </a>`
-    )
-    .join('')
+        <img src="/icons/CaretRight.svg" alt="" class="size-6 shrink-0" />
+      </a>
+    </div>
+  `
+}
+
+function renderMobileKurseLinkRow(link, isLast) {
+  return `
+    <div${isLast ? '' : ' class="border-b border-neutral-500 pb-2"'}>
+      <a href="${link.href}" class="flex items-center justify-between gap-4 font-inter text-body-2 text-black">
+        ${link.label}
+        <img src="/icons/CaretRight.svg" alt="" class="size-6 shrink-0" />
+      </a>
+    </div>
+  `
 }
 
 function markup() {
+  const links = NAV_LINKS.kurse
   return `
-    <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="/" class="font-poppins text-lg font-semibold text-neutral-900">GDMM</a>
+    <div class="flex items-center justify-between bg-neutral-200 p-4 md:px-10 md:py-4">
+      <a href="/" class="font-poppins text-[32px] font-bold text-black">GDM2</a>
 
-      <nav class="hidden items-center gap-8 md:flex" aria-label="Hauptnavigation">
+      <nav class="hidden items-center gap-9 md:flex" aria-label="Hauptnavigation">
         <div class="relative" data-kurse-wrapper>
           <button
             type="button"
             id="kurse-toggle"
             aria-expanded="false"
             aria-controls="kurse-menu"
-            class="inline-flex items-center gap-1 font-inter text-body-2 text-neutral-900"
+            class="flex items-center gap-2.5 font-inter text-body text-black"
           >
             Kurse
             <img src="/icons/CaretRight.svg" alt="" class="size-4 rotate-90 transition-transform duration-150" data-kurse-caret />
@@ -38,15 +50,15 @@ function markup() {
             id="kurse-menu"
             role="menu"
             hidden
-            class="absolute left-0 top-full z-10 mt-4 min-w-max overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100 shadow-lg"
+            class="absolute left-0 top-full z-10 mt-7 flex w-[234px] flex-col gap-2 overflow-clip rounded-bl-lg rounded-br-lg bg-neutral-200 p-4 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)]"
           >
-            ${renderKurseLinks()}
+            ${links.map((link, i) => renderKurseLinkRow(link, i === links.length - 1)).join('')}
           </div>
         </div>
 
-        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
-          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+          <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
         </a>
       </nav>
 
@@ -61,26 +73,20 @@ function markup() {
           aria-expanded="false"
           aria-controls="mobile-nav"
           aria-label="Menü öffnen"
-          class="inline-flex size-10 items-center justify-center"
+          class="shrink-0"
         >
-          <span class="flex flex-col items-center justify-center gap-1.5" data-hamburger-bars>
-            <span class="h-0.5 w-6 bg-neutral-900"></span>
-            <span class="h-0.5 w-6 bg-neutral-900"></span>
-            <span class="h-0.5 w-6 bg-neutral-900"></span>
-          </span>
-          <img src="/icons/X.svg" alt="" class="hidden size-6" data-close-icon />
+          <img src="/icons/List.svg" alt="" class="size-8" data-menu-icon />
         </button>
       </div>
     </div>
 
-    <div id="mobile-nav" aria-hidden="true" style="transform: translateY(-100%)" class="fixed inset-x-0 top-[var(--header-height)] z-30 h-[calc(100vh-var(--header-height))] overflow-y-auto border-t border-neutral-200 bg-neutral-100 px-6 py-4 transition-transform duration-300 ease-in-out will-change-transform md:hidden">
-      <nav class="flex flex-col gap-4" aria-label="Mobile Navigation">
-        ${NAV_LINKS.kurse
-          .map(
-            (link) => `<a href="${link.href}" class="font-inter text-body-2 text-neutral-900">${link.label}</a>`
-          )
-          .join('')}
-      </nav>
+    <div id="mobile-nav" aria-hidden="true" class="h-0 overflow-hidden bg-neutral-100 md:hidden">
+      <div class="flex flex-col gap-5 px-4 py-5">
+        <p class="font-inter text-body font-semibold text-black">Kurse</p>
+        <nav class="flex flex-col gap-2" aria-label="Mobile Navigation">
+          ${links.map((link, i) => renderMobileKurseLinkRow(link, i === links.length - 1)).join('')}
+        </nav>
+      </div>
     </div>
   `
 }
@@ -91,10 +97,13 @@ function wireKurseDropdown(root) {
   const menu = root.querySelector('#kurse-menu')
   const caret = root.querySelector('[data-kurse-caret]')
 
+  let openedByHover = false
+
   function close() {
     toggle.setAttribute('aria-expanded', 'false')
     menu.hidden = true
     caret.classList.remove('-rotate-90')
+    openedByHover = false
   }
 
   function open() {
@@ -105,6 +114,10 @@ function wireKurseDropdown(root) {
 
   toggle.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true'
+    if (isOpen && openedByHover) {
+      openedByHover = false
+      return
+    }
     isOpen ? close() : open()
   })
 
@@ -128,6 +141,9 @@ function wireKurseDropdown(root) {
 
   wrapper.addEventListener('mouseenter', () => {
     cancelClose()
+    if (toggle.getAttribute('aria-expanded') !== 'true') {
+      openedByHover = true
+    }
     open()
   })
 
@@ -137,26 +153,27 @@ function wireKurseDropdown(root) {
 function wireMobileToggle(root) {
   const toggle = root.querySelector('#mobile-nav-toggle')
   const panel = root.querySelector('#mobile-nav')
-  const bars = root.querySelector('[data-hamburger-bars]')
-  const closeIcon = root.querySelector('[data-close-icon]')
+  const icon = root.querySelector('[data-menu-icon]')
 
-  panel.inert = true
+  function setOpen(open) {
+    toggle.setAttribute('aria-expanded', String(open))
+    panel.setAttribute('aria-hidden', String(!open))
+    panel.style.height = open ? '100vh' : '0'
+    icon.src = open ? '/icons/X.svg' : '/icons/List.svg'
+  }
 
   toggle.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true'
-    toggle.setAttribute('aria-expanded', String(!isOpen))
-    panel.style.transform = isOpen ? 'translateY(-100%)' : 'translateY(0)'
-    panel.setAttribute('aria-hidden', String(isOpen))
-    panel.inert = isOpen
-    bars.classList.toggle('hidden', !isOpen)
-    closeIcon.classList.toggle('hidden', isOpen)
-    document.body.classList.toggle('overflow-hidden', !isOpen)
+    setOpen(!isOpen)
+  })
+
+  panel.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false))
   })
 }
 
 export function mountHeader(root) {
   root.innerHTML = markup()
-  root.classList.add('relative', 'z-40', 'bg-neutral-100')
   wireKurseDropdown(root)
   wireMobileToggle(root)
 }

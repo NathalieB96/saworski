@@ -34,7 +34,7 @@ function markup(seite, openIndex) {
   return `
     <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:py-20 lg:py-32">
       <h2 id="faq-heading" class="font-poppins text-h1 text-neutral-900">Häufig gestellte Fragen</h2>
-      <div class="flex flex-col divide-y divide-neutral-900" data-list>
+      <div class="flex flex-col divide-y divide-neutral-500" data-list>
         ${items.map((item, index) => renderRow(seite, item, index, openIndex)).join('')}
       </div>
     </div>
