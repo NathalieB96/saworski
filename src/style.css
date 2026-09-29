@@ -92,7 +92,7 @@ h1, h2, h3, h4 {
 }
   */
 
-body {
+.text-body, .text-body-2 {
   overflow-wrap: break-word;
   hyphens: auto;
 }

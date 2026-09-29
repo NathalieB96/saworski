@@ -20,7 +20,7 @@ function renderKurseLinks() {
 function markup() {
   return `
     <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
-      <a href="/" class="font-poppins text-lg font-semibold text-neutral-900">Saworski</a>
+      <a href="/" class="font-poppins text-lg font-semibold text-neutral-900">GDMM</a>
 
       <nav class="hidden items-center gap-8 md:flex" aria-label="Hauptnavigation">
         <div class="relative" data-kurse-wrapper>
@@ -50,34 +50,36 @@ function markup() {
         </a>
       </nav>
 
-      <button
-        type="button"
-        id="mobile-nav-toggle"
-        aria-expanded="false"
-        aria-controls="mobile-nav"
-        aria-label="Menü öffnen"
-        class="inline-flex size-10 items-center justify-center md:hidden"
-      >
-        <span class="flex flex-col items-center justify-center gap-1.5" data-hamburger-bars>
-          <span class="h-0.5 w-6 bg-neutral-900"></span>
-          <span class="h-0.5 w-6 bg-neutral-900"></span>
-          <span class="h-0.5 w-6 bg-neutral-900"></span>
-        </span>
-        <img src="/icons/X.svg" alt="" class="hidden size-6" data-close-icon />
-      </button>
+      <div class="flex items-center gap-3 md:hidden">
+        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+          Jetzt buchen
+          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
+        </a>
+        <button
+          type="button"
+          id="mobile-nav-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+          aria-label="Menü öffnen"
+          class="inline-flex size-10 items-center justify-center"
+        >
+          <span class="flex flex-col items-center justify-center gap-1.5" data-hamburger-bars>
+            <span class="h-0.5 w-6 bg-neutral-900"></span>
+            <span class="h-0.5 w-6 bg-neutral-900"></span>
+            <span class="h-0.5 w-6 bg-neutral-900"></span>
+          </span>
+          <img src="/icons/X.svg" alt="" class="hidden size-6" data-close-icon />
+        </button>
+      </div>
     </div>
 
-    <div id="mobile-nav" hidden class="border-t border-neutral-200 bg-neutral-100 px-6 py-4 md:hidden">
+    <div id="mobile-nav" aria-hidden="true" style="transform: translateY(-100%)" class="fixed inset-x-0 top-[var(--header-height)] z-30 h-[calc(100vh-var(--header-height))] overflow-y-auto border-t border-neutral-200 bg-neutral-100 px-6 py-4 transition-transform duration-300 ease-in-out will-change-transform md:hidden">
       <nav class="flex flex-col gap-4" aria-label="Mobile Navigation">
         ${NAV_LINKS.kurse
           .map(
             (link) => `<a href="${link.href}" class="font-inter text-body-2 text-neutral-900">${link.label}</a>`
           )
           .join('')}
-        <a href="${NAV_LINKS.booking}" class="inline-flex w-fit items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body-2 font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
-          Jetzt buchen
-          <img src="/icons/ArrowRight.svg" alt="" class="size-4" />
-        </a>
       </nav>
     </div>
   `
@@ -138,10 +140,14 @@ function wireMobileToggle(root) {
   const bars = root.querySelector('[data-hamburger-bars]')
   const closeIcon = root.querySelector('[data-close-icon]')
 
+  panel.inert = true
+
   toggle.addEventListener('click', () => {
     const isOpen = toggle.getAttribute('aria-expanded') === 'true'
     toggle.setAttribute('aria-expanded', String(!isOpen))
-    panel.hidden = isOpen
+    panel.style.transform = isOpen ? 'translateY(-100%)' : 'translateY(0)'
+    panel.setAttribute('aria-hidden', String(isOpen))
+    panel.inert = isOpen
     bars.classList.toggle('hidden', !isOpen)
     closeIcon.classList.toggle('hidden', isOpen)
     document.body.classList.toggle('overflow-hidden', !isOpen)
@@ -150,6 +156,7 @@ function wireMobileToggle(root) {
 
 export function mountHeader(root) {
   root.innerHTML = markup()
+  root.classList.add('relative', 'z-40', 'bg-neutral-100')
   wireKurseDropdown(root)
   wireMobileToggle(root)
 }
