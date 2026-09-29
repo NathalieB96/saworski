@@ -9,7 +9,7 @@ const NAV_LINKS = {
 function renderKurseLinkRow(link, isLast) {
   return `
     <div${isLast ? '' : ' class="border-b border-neutral-500 pb-2"'}>
-      <a href="${link.href}" role="menuitem" class="flex items-center justify-between gap-4 font-inter text-body text-black">
+      <a href="${link.href}" role="menuitem" class="flex items-center justify-between gap-4 rounded-md px-2 py-1.5 -mx-2 font-inter text-body text-black transition-colors duration-150 hover:bg-primary/10">
         ${link.label}
         <img src="/icons/CaretRight.svg" alt="" class="size-6 shrink-0" />
       </a>
@@ -50,7 +50,7 @@ function markup() {
             id="kurse-menu"
             role="menu"
             hidden
-            class="absolute left-0 top-full z-10 mt-7 flex w-[234px] flex-col gap-2 overflow-clip rounded-bl-lg rounded-br-lg bg-neutral-200 p-4 shadow-[0px_4px_10px_0px_rgba(0,0,0,0.1)]"
+            class="absolute left-0 top-full z-10 mt-7 flex w-[234px] flex-col gap-2 overflow-clip rounded-bl-lg rounded-br-lg bg-neutral-200 p-4"
           >
             ${links.map((link, i) => renderKurseLinkRow(link, i === links.length - 1)).join('')}
           </div>
