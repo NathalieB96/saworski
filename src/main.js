@@ -4,6 +4,7 @@ import { mountFooter } from './components/footer.js'
 import { mountTestimonials } from './components/testimonials.js'
 import { mount as mountKurstermine } from './components/kurstermine.js'
 import { mount as mountFaq } from './components/faq.js'
+import { mount as mountTestzugang } from './components/testzugang.js'
 
 document.addEventListener('DOMContentLoaded', () => {
   const headerEl = document.querySelector('[data-component="header"]')
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const testimonialsEl = document.querySelector('[data-component="testimonials"]')
   const kurstermineEl = document.querySelector('[data-component="kurstermine"]')
   const faqEl = document.querySelector('[data-component="faq"]')
+  const testzugangEl = document.querySelector('[data-component="testzugang"]')
   if (headerEl) {
     mountHeader(headerEl)
     const setHeaderHeight = () => {
@@ -23,4 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
   if (testimonialsEl) mountTestimonials(testimonialsEl)
   if (kurstermineEl) mountKurstermine(kurstermineEl, { seite: kurstermineEl.dataset.seite })
   if (faqEl) mountFaq(faqEl, { seite: faqEl.dataset.seite })
+  if (testzugangEl) mountTestzugang(testzugangEl)
 })
