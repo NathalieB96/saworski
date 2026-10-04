@@ -1,7 +1,8 @@
+import { EMAIL_PATTERN, showFieldError as showErrorOn, clearFieldError as clearErrorOn } from '../helpers/form-validation.js'
+
 const MOODLE_SIGNUP_URL = 'https://gemeinsamdenmeistermeistern.de/api/community-beitritt.php'
 // Request payload shape ({ firstname, email }) is assumed/unconfirmed - adjust once the client confirms the real contract.
 const NEWSLETTER_ENDPOINT_URL = 'https://gemeinsamdenmeistermeistern.de/api/newsletter.php'
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const FIELD_CONFIG = [
   { name: 'vorname', validate: (value) => value.trim() !== '', message: 'Bitte gib deinen Vornamen ein.' },
@@ -143,19 +144,14 @@ export function mount(root) {
   function showFieldError(name, message) {
     const el = fieldInput(name)
     const errorEl = root.querySelector(`#${name}-error`)
-    errorEl.querySelector('[data-error-text]').textContent = message
-    errorEl.hidden = false
-    el.setAttribute('aria-invalid', 'true')
-    el.setAttribute('aria-describedby', `${name}-error`)
+    showErrorOn(el, errorEl, message)
     touchedWithError.add(name)
   }
 
   function clearFieldError(name) {
     const el = fieldInput(name)
     const errorEl = root.querySelector(`#${name}-error`)
-    errorEl.querySelector('[data-error-text]').textContent = ''
-    errorEl.hidden = true
-    el.removeAttribute('aria-invalid')
+    clearErrorOn(el, errorEl)
   }
 
   function validateField(name) {

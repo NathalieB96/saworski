@@ -11,6 +11,7 @@ export default defineConfig({
         kurs2: 'ntg-kurs-retreat.html',
         booking: 'booking.html',
         impressum: 'impressum.html',
+        agb: 'agb.html',
         datenschutz: 'datenschutz.html',
       }
     }

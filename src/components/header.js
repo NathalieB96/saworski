@@ -1,9 +1,16 @@
+import { BOOKING_PAGE_PATH } from '../config/paths.js'
+
 const NAV_LINKS = {
   kurse: [
     { label: 'NTG Begleitkurs', href: '/ntg-begleitkurs.html' },
     { label: 'NTG Kurs mit Retreat', href: '/ntg-kurs-retreat.html' },
   ],
-  booking: '/booking.html',
+}
+
+// Auf den Kursseiten steht data-kurs am <body>. Dann verlinkt "Jetzt buchen" mit ?kurs=, sonst auf die Buchungsseite.
+function bookingHref() {
+  const kurs = document.body.dataset.kurs
+  return kurs ? `${BOOKING_PAGE_PATH}?kurs=${kurs}` : BOOKING_PAGE_PATH
 }
 
 function renderKurseLinkRow(link, isLast) {
@@ -56,14 +63,14 @@ function markup() {
           </div>
         </div>
 
-        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${bookingHref()}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
           <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
         </a>
       </nav>
 
       <div class="flex items-center gap-3 md:hidden">
-        <a href="${NAV_LINKS.booking}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+        <a href="${bookingHref()}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
           <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
         </a>

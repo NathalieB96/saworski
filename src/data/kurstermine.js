@@ -6,6 +6,10 @@
 // anzahlTermine: optional, Anzahl der Vorbereitungstermine (nur bei Retreat-Kursen relevant).
 // preis: Standardpreis in Euro
 // fruehbucherpreis: Preis bei Buchung bis 8 Wochen vor Kursstart
+// id: Kürzel des Kurses, exakt wie in der Kürzel-Spalte der Terminliste. Wird nicht auf der Seite angezeigt,
+// aber in Buchungslinks (?termin=) verwendet und als courseID an buchung.php gesendet.
+// Muss pro Eintrag einmalig sein und darf nach der Veröffentlichung nicht mehr umbenannt werden.
+// pruefung, start, ende und retreat (null oder Zeitraum) bilden die Beschriftung im Termin-Dropdown der Buchungsseite und dürfen nicht fehlen.
 export const kurstermine = [
   {
     id: 'FWW0-27-1-FR',

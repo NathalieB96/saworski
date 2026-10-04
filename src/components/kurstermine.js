@@ -1,4 +1,5 @@
 import { kurstermine } from '../data/kurstermine.js'
+import { formatDate, bookingLinkForTermin } from '../helpers/kurstermin-label.js'
 
 const FRUEHBUCHER_TAGE = 56
 
@@ -51,11 +52,6 @@ function price(termin) {
   return isFruehbucher(termin)
     ? { current: termin.fruehbucherpreis, original: termin.preis }
     : { current: termin.preis, original: null }
-}
-
-function formatDate(isoDate) {
-  const [year, month, day] = isoDate.split('-')
-  return `${day}.${month}.${year}`
 }
 
 function rhythmusLabel(termin) {
@@ -169,7 +165,7 @@ function renderDesktopRow(termin) {
       </div>
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
       ${renderPrice(termin, false)}
-      <a href="/booking.html" class="${BUTTON_CLASSES} ${buttonJustifyClass(termin)}">
+      <a href="${bookingLinkForTermin(termin)}" class="${BUTTON_CLASSES} ${buttonJustifyClass(termin)}">
         Platz sichern
         <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
       </a>
@@ -200,7 +196,7 @@ function renderMobileCard(termin) {
         ${renderPrice(termin, true)}
       </div>
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
-      <a href="/booking.html" class="${BUTTON_CLASSES} w-full justify-center">
+      <a href="${bookingLinkForTermin(termin)}" class="${BUTTON_CLASSES} w-full justify-center">
         Platz sichern
         <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
       </a>

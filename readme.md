@@ -1,58 +1,27 @@
-# Saworski – Industriemeister Metall Kurse
+# Saworski
 
-Website built with Vite, Tailwind CSS v4, and vanilla JavaScript.
+Marketingseite für die NTG-Prüfungsvorbereitung (Industriemeister Metall und Elektrotechnik). Vite, Tailwind CSS v4 und Vanilla JavaScript, Inhalte auf Deutsch.
 
-## Tech Stack
+## Entwicklung
 
-- **Build tool:** [Vite](https://vitejs.dev/) 8 (Rolldown bundler)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4 via `@tailwindcss/vite`
-- **JavaScript:** Vanilla JS, no framework
-- **Fonts:** Poppins (headings), Inter (body), self-hosted as WOFF2
+- `npm run dev`: Entwicklungsserver auf http://localhost:5173/
+- `npm run build`: Produktions-Build nach `dist/`
+- `npm run preview`: Produktions-Build lokal ansehen
 
-## Pages
+## Buchungsformular lokal testen
 
-| File | Description |
-|---|---|
-| `index.html` | Homepage |
-| `ntg-begleitkurs.html` | Course page: NTG Begleitkurs |
-| `ntg-kurs-retreat.html` | Course page: Retreat |
-| `booking.html` | Course booking form |
-| `impressum.html` | Legal notice |
-| `datenschutz.html` | Privacy policy |
+Das Buchungsformular sendet an `https://gemeinsamdenmeistermeistern.de/api/buchung.php`. Lokal schlägt diese Anfrage mit einem CORS-Fehler fehl, solange der Kunde `localhost` nicht freigibt.
 
-## Getting Started
+Um die Erfolgsansicht ohne echte Anfrage zu prüfen:
 
-### Prerequisites
+1. Lege im Projektordner eine Datei `.env.local` an (Vorlage: `.env.example`).
+2. Setze `VITE_MOCK_BOOKING=true`.
+3. Starte `npm run dev` neu.
 
-- Node.js 20.19+ or 22.12+ (required by Vite 8)
-- npm
+Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer aus.
 
-### Installation
+## Vor dem Launch
 
-```bash
-npm install
-```
-
-### Development
-
-```bash
-npm run dev
-```
-
-Opens the site at `http://localhost:5173/`.
-
-### Build
-
-```bash
-npm run build
-```
-
-Output goes to `dist/`.
-
-## Project Structure
-
-- `src/main.js` — entry point; imports `style.css` and mounts the shared header/footer on `DOMContentLoaded`.
-- `src/components/` — reusable UI building blocks shared across all six pages via plain JS injection (no templating plugin). Each module exports a `mount<Name>(rootEl)` function that renders markup into a placeholder element present on every page, e.g. `<header data-component="header"></header>`.
-  - `header.js` — site header: logo, "Kurse" dropdown, "Kontakt" link, "Jetzt buchen" CTA, mobile hamburger menu.
-  - `footer.js` — site footer: copyright, legal links (Datenschutz, Impressum).
-- `public/icons/` — icon library (individual SVG files, e.g. `ArrowRight.svg`, `X.svg`, `CaretRight.svg`), referenced via `<img src="/icons/Name.svg">`.
+- **AGB-Text ist ein Platzhalter.** `agb.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
+- **Buchungsendpunkt bestätigen.** `buchung.php` ist noch nicht live. Der Ordner `/api/` und das Antwortformat `{ success, message }` müssen mit dem Kunden bestätigt werden.
+- **Situation-Optionen prüfen.** Die Schreibweise „Meisteausbildung“ bzw. „Meisterausbildung“ ist offen (siehe `SITUATION_OPTIONS` in `src/components/booking.js`).
