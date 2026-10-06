@@ -22,7 +22,7 @@ export function createListbox(select) {
   if (document.getElementById(labelId)) trigger.setAttribute('aria-labelledby', labelId)
   if (select.getAttribute('aria-required') === 'true') trigger.setAttribute('aria-required', 'true')
   trigger.innerHTML = `
-    <span data-trigger-text></span>
+    <span data-trigger-text class="min-w-0 whitespace-normal break-words"></span>
     <img src="/icons/CaretDown.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
   `
 
@@ -71,6 +71,7 @@ export function createListbox(select) {
       li.dataset.value = option.value
       li.className = OPTION_CLASSES
       const label = document.createElement('span')
+      label.className = 'min-w-0 whitespace-normal break-words'
       label.textContent = option.textContent
       const check = document.createElement('img')
       check.src = '/icons/Check.svg'

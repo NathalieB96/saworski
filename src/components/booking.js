@@ -63,6 +63,7 @@ function terminEntriesFor(kurs) {
 
 // Termin-Optionen werden aus den Termin-Daten erzeugt. Kein Termin wird hier fest eingetragen.
 function terminOptionsMarkup(kurs, selectedId) {
+  if (!kurs) return '<option value="" disabled selected>Bitte wähle einen Termin</option>'
   const entries = terminEntriesFor(kurs)
   if (entries.length === 0) {
     return '<option value="" disabled selected>Aktuell keine Termine verfügbar</option>'
@@ -81,14 +82,15 @@ function readPrefill() {
   if (termin) return { kurs: termin.retreat ? 'retreat' : 'begleitkurs', terminId: termin.id }
   const kurs = params.get('kurs')
   if (KURS_OPTIONS.some((option) => option.value === kurs)) return { kurs, terminId: null }
-  return { kurs: 'begleitkurs', terminId: null }
+  return { kurs: null, terminId: null }
 }
 
 function markup(initial) {
-  const kursOptions = KURS_OPTIONS.map(
+  const kursPlaceholder = initial.kurs ? '' : '<option value="" disabled selected>Bitte wähle eine Option</option>'
+  const kursOptions = kursPlaceholder + KURS_OPTIONS.map(
     (option) => `<option value="${option.value}" ${option.value === initial.kurs ? 'selected' : ''}>${option.label}</option>`
   ).join('')
-  const situationOptions = '<option value="" selected>Bitte wähle eine Option</option>' +
+  const situationOptions = '<option value="" disabled selected>Bitte wähle eine Option</option>' +
     SITUATION_OPTIONS.map((option) => `<option value="${option.value}">${option.label}</option>`).join('')
 
   return `
@@ -98,7 +100,7 @@ function markup(initial) {
         <p class="text-center font-poppins text-h2 text-white">Ich brauch nur noch kurz einige Infos von dir.</p>
 
         <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10" data-form>
-          ${selectMarkup('kurs', 'Welchen Kurs willst du buchen?', kursOptions, { required: true })}
+          ${selectMarkup('kurs', 'Welchen Kurs willst du buchen?', kursOptions, { required: true, withError: true })}
           ${selectMarkup('termin', 'Kurstermin', terminOptionsMarkup(initial.kurs, initial.terminId), { required: true, withError: true })}
 
           <div class="flex flex-col gap-2.5">
@@ -215,7 +217,7 @@ export function mount(root) {
   const statusEl = root.querySelector('[data-status]')
   const kursSelect = root.querySelector('#kurs')
   const terminSelect = root.querySelector('#termin')
-  createListbox(kursSelect)
+  const kursListbox = createListbox(kursSelect)
   const terminListbox = createListbox(terminSelect)
   createListbox(root.querySelector('#situation'))
   const vornameInput = root.querySelector('#vorname')
@@ -229,6 +231,7 @@ export function mount(root) {
 
   // Jede Pflichtprüfung hat eine eigene Regel und eine eigene Meldung. AGB und Datenschutz sind getrennt.
   const rules = [
+    { name: 'kurs', el: kursListbox.trigger, valid: () => kursSelect.value !== '', message: 'Bitte wähle einen Kurs.' },
     { name: 'termin', el: terminListbox.trigger, valid: () => terminSelect.value !== '', message: 'Bitte wähle einen Kurstermin.' },
     { name: 'vorname', el: vornameInput, valid: () => vornameInput.value.trim() !== '', message: 'Bitte gib deinen Vornamen ein.' },
     { name: 'nachname', el: nachnameInput, valid: () => nachnameInput.value.trim() !== '', message: 'Bitte gib deinen Nachnamen ein.' },
@@ -267,6 +270,7 @@ export function mount(root) {
 
   // Kurs-Auswahl: Termin-Liste neu aufbauen und den Termin auf den Platzhalter zurücksetzen.
   kursSelect.addEventListener('change', () => {
+    revalidateIfTouched('kurs')
     terminSelect.innerHTML = terminOptionsMarkup(kursSelect.value, null)
     terminListbox.refresh()
     revalidateIfTouched('termin')
