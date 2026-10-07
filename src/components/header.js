@@ -80,9 +80,11 @@ function markup() {
           aria-expanded="false"
           aria-controls="mobile-nav"
           aria-label="Menü öffnen"
-          class="shrink-0"
+          class="nav-icon relative size-8 shrink-0 cursor-pointer"
         >
-          <img src="/icons/List.svg" alt="" class="size-8" data-menu-icon />
+          <span aria-hidden="true" class="nav-icon-bar"></span>
+          <span aria-hidden="true" class="nav-icon-bar"></span>
+          <span aria-hidden="true" class="nav-icon-bar"></span>
         </button>
       </div>
     </div>
@@ -160,13 +162,12 @@ function wireKurseDropdown(root) {
 function wireMobileToggle(root) {
   const toggle = root.querySelector('#mobile-nav-toggle')
   const panel = root.querySelector('#mobile-nav')
-  const icon = root.querySelector('[data-menu-icon]')
-
   function setOpen(open) {
     toggle.setAttribute('aria-expanded', String(open))
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen')
+    toggle.classList.toggle('nav-icon-open', open)
     panel.setAttribute('aria-hidden', String(!open))
     panel.style.height = open ? '100vh' : '0'
-    icon.src = open ? '/icons/X.svg' : '/icons/List.svg'
   }
 
   toggle.addEventListener('click', () => {
@@ -176,6 +177,10 @@ function wireMobileToggle(root) {
 
   panel.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setOpen(false))
+  })
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') setOpen(false)
   })
 }
 

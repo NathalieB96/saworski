@@ -104,6 +104,33 @@ a.text-body, a.text-body-2, button.text-body, button.text-body-2 {
   white-space: nowrap;
 }
 
+/* Animierter Burger-Icon (CodePen "Icon 4"-Prinzip, auf die aktuelle 32x32px-Buttongröße angepasst).
+   Jeder äußere Balken rotiert um die eigene Mitte statt um den linken Rand (wie im Original), damit der
+   Kreuzungspunkt des X exakt in der Boxmitte liegt, unabhängig von der Boxgröße.
+   Reines CSS statt Tailwind-Utilities: die Rotations-/Offset-Kombination hat keine sinnvolle Utility-Entsprechung. */
+.nav-icon-bar {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-radius: 6.4px;
+  background: black;
+  opacity: 1;
+  transform-origin: center;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out, top 0.25s ease-in-out, width 0.25s ease-in-out;
+}
+.nav-icon-bar:nth-child(1) { top: 4px; }
+.nav-icon-bar:nth-child(2) { top: 14px; }
+.nav-icon-bar:nth-child(3) { top: 24px; }
+
+.nav-icon-open .nav-icon-bar:nth-child(1) { transform: rotate(45deg); top: 14px; }
+.nav-icon-open .nav-icon-bar:nth-child(2) { width: 0%; opacity: 0; }
+.nav-icon-open .nav-icon-bar:nth-child(3) { transform: rotate(-45deg); top: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-icon-bar { transition: none; }
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
