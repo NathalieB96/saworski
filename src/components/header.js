@@ -57,7 +57,7 @@ function markup() {
             id="kurse-menu"
             role="menu"
             hidden
-            class="absolute left-0 top-full z-10 mt-7 flex w-[234px] flex-col gap-2 overflow-clip rounded-bl-lg rounded-br-lg bg-neutral-200 p-4"
+            class="absolute left-0 top-full z-10 mt-7 flex w-max flex-col gap-2 overflow-clip rounded-bl-lg rounded-br-lg bg-neutral-200 p-4"
           >
             ${links.map((link, i) => renderKurseLinkRow(link, i === links.length - 1)).join('')}
           </div>
