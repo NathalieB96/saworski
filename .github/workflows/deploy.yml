@@ -1,0 +1,189 @@
+name: Deploy
+
+# staging -> STAGING_DEPLOY_PATH (noindex build). master -> LIVE_DEPLOY_PATH (gated by LIVE_DEPLOY_ENABLED).
+on:
+  push:
+    branches: [staging, master]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy-staging:
+    if: github.ref == 'refs/heads/staging'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-staging
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (staging)
+        run: npm run build:staging
+
+      - name: Guard - staging build must be noindex
+        run: |
+          missing=0
+          for f in dist/*.html; do
+            if ! grep -qi 'noindex' "$f"; then
+              echo "::error file=$f::Missing noindex meta tag in staging build"
+              missing=1
+            fi
+          done
+          if [ "$missing" -eq 1 ]; then
+            echo "Staging noindex guard failed: one or more HTML files are missing the noindex tag." >&2
+            exit 1
+          fi
+          echo "Staging noindex guard passed."
+
+      - name: Configure SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          if [ -n "$DEPLOY_SSH_KEY" ]; then
+            printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
+            chmod 600 "$HOME/.ssh/deploy_key"
+            echo "AUTH_METHOD=key" >> "$GITHUB_ENV"
+          else
+            echo "AUTH_METHOD=password" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install sshpass (password auth fallback)
+        if: env.AUTH_METHOD == 'password'
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy to staging via rsync
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+          TARGET_PATH: ${{ secrets.STAGING_DEPLOY_PATH }}
+          DRY_RUN: ${{ vars.DEPLOY_DRY_RUN }}
+        run: |
+          PORT="${DEPLOY_PORT:-22}"
+          KNOWN_HOSTS="$HOME/.ssh/known_hosts"
+
+          if [ "$AUTH_METHOD" = "key" ]; then
+            SSH_CMD="ssh -p \"$PORT\" -i \"$HOME/.ssh/deploy_key\" -o StrictHostKeyChecking=yes -o UserKnownHostsFile=\"$KNOWN_HOSTS\""
+          else
+            SSH_CMD="sshpass -e ssh -p \"$PORT\" -o StrictHostKeyChecking=yes -o UserKnownHostsFile=\"$KNOWN_HOSTS\""
+          fi
+
+          RSYNC_FLAGS="-v"
+          if [ "$DRY_RUN" != "false" ]; then
+            echo "::notice::DEPLOY_DRY_RUN is '${DRY_RUN:-<unset>}' - running in dry-run mode, nothing will change on the server. Set the repository variable DEPLOY_DRY_RUN to 'false' to deploy for real."
+            RSYNC_FLAGS="--dry-run -v"
+          fi
+
+          rsync -az $RSYNC_FLAGS \
+            --exclude 'api/' --exclude 'intern/' --exclude '.htaccess' --exclude '.htpasswd' --exclude '.*' \
+            -e "$SSH_CMD" \
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:$TARGET_PATH/"
+
+  deploy-master:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-master
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Guard - live build must never contain noindex
+        run: |
+          if grep -rIli 'noindex' dist/; then
+            echo "Master noindex guard failed: 'noindex' found in the files listed above." >&2
+            exit 1
+          fi
+          echo "Master noindex guard passed."
+
+      - name: Check live deploy switch
+        id: live_switch
+        run: |
+          if [ "${{ vars.LIVE_DEPLOY_ENABLED }}" = "true" ]; then
+            echo "skip_upload=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::LIVE_DEPLOY_ENABLED is not set to 'true' (currently '${{ vars.LIVE_DEPLOY_ENABLED }}') - skipping the live upload. Set the repository variable LIVE_DEPLOY_ENABLED to 'true' to enable live deploys."
+            echo "skip_upload=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Configure SSH
+        if: steps.live_switch.outputs.skip_upload != 'true'
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          mkdir -p "$HOME/.ssh"
+          chmod 700 "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          chmod 600 "$HOME/.ssh/known_hosts"
+          if [ -n "$DEPLOY_SSH_KEY" ]; then
+            printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/deploy_key"
+            chmod 600 "$HOME/.ssh/deploy_key"
+            echo "AUTH_METHOD=key" >> "$GITHUB_ENV"
+          else
+            echo "AUTH_METHOD=password" >> "$GITHUB_ENV"
+          fi
+
+      - name: Install sshpass (password auth fallback)
+        if: steps.live_switch.outputs.skip_upload != 'true' && env.AUTH_METHOD == 'password'
+        run: sudo apt-get update && sudo apt-get install -y sshpass
+
+      - name: Deploy to live via rsync
+        if: steps.live_switch.outputs.skip_upload != 'true'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+          SSHPASS: ${{ secrets.DEPLOY_PASSWORD }}
+          TARGET_PATH: ${{ secrets.LIVE_DEPLOY_PATH }}
+          DRY_RUN: ${{ vars.DEPLOY_DRY_RUN }}
+        run: |
+          PORT="${DEPLOY_PORT:-22}"
+          KNOWN_HOSTS="$HOME/.ssh/known_hosts"
+
+          if [ "$AUTH_METHOD" = "key" ]; then
+            SSH_CMD="ssh -p \"$PORT\" -i \"$HOME/.ssh/deploy_key\" -o StrictHostKeyChecking=yes -o UserKnownHostsFile=\"$KNOWN_HOSTS\""
+          else
+            SSH_CMD="sshpass -e ssh -p \"$PORT\" -o StrictHostKeyChecking=yes -o UserKnownHostsFile=\"$KNOWN_HOSTS\""
+          fi
+
+          RSYNC_FLAGS="-v"
+          if [ "$DRY_RUN" != "false" ]; then
+            echo "::notice::DEPLOY_DRY_RUN is '${DRY_RUN:-<unset>}' - running in dry-run mode, nothing will change on the server. Set the repository variable DEPLOY_DRY_RUN to 'false' to deploy for real."
+            RSYNC_FLAGS="--dry-run -v"
+          fi
+
+          rsync -az $RSYNC_FLAGS \
+            --exclude 'api/' --exclude 'intern/' --exclude '.htaccess' --exclude '.htpasswd' --exclude '.*' \
+            -e "$SSH_CMD" \
+            dist/ "$DEPLOY_USER@$DEPLOY_HOST:$TARGET_PATH/"

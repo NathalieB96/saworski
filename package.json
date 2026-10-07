@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "/Users/nathalie/.nvm/versions/node/v22.23.2/bin/node ./node_modules/.bin/vite",
     "build": "vite build",
+    "build:staging": "vite build --mode staging",
     "preview": "vite preview"
   },
   "devDependencies": {
