@@ -57,7 +57,7 @@ function markup() {
 
           <div class="flex flex-col gap-2.5 md:col-span-2">
             <div class="flex items-start gap-2.5">
-              <input type="checkbox" id="privacy" name="privacy" required class="size-6 shrink-0 cursor-pointer appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
+              <input type="checkbox" id="privacy" name="privacy" required class="size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
               <label for="privacy" class="font-inter text-body text-white">
                 Ich habe die <a href="/datenschutz.html" class="underline">Datenschutzerklärung</a> zur Kenntnis genommen.*
               </label>
@@ -71,7 +71,7 @@ function markup() {
           </div>
 
           <div class="flex items-start gap-2.5 md:col-span-2">
-            <input type="checkbox" id="newsletter" name="newsletter" class="size-6 shrink-0 cursor-pointer appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
+            <input type="checkbox" id="newsletter" name="newsletter" class="size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
             <label for="newsletter" class="font-inter text-body text-white">Ja, schick mir Infos zu Kursen und wann ein neuer Kurs startet.</label>
           </div>
 

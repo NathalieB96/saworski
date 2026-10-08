@@ -80,7 +80,7 @@ function markup() {
           aria-expanded="false"
           aria-controls="mobile-nav"
           aria-label="Menü öffnen"
-          class="nav-icon relative size-8 shrink-0 cursor-pointer"
+          class="nav-icon relative size-8 shrink-0"
         >
           <span aria-hidden="true" class="nav-icon-bar"></span>
           <span aria-hidden="true" class="nav-icon-bar"></span>

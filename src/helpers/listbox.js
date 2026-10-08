@@ -2,7 +2,7 @@
 // Das native select bleibt die Quelle für Wert, Validierung und Payload. Es wird per sr-only ausgeblendet.
 const TRIGGER_CLASSES = 'flex w-full items-center justify-between gap-2.5 rounded-lg bg-white p-4 text-left font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
 const LIST_CLASSES = 'absolute left-0 top-full z-10 mt-2 flex w-full flex-col gap-1 rounded-lg border-4 border-primary/20 bg-white p-2'
-const OPTION_CLASSES = 'flex cursor-pointer items-center justify-between gap-2 rounded px-2 py-1 font-inter text-body text-neutral-900 hover:bg-primary/20'
+const OPTION_CLASSES = 'flex items-center justify-between gap-2 rounded px-2 py-1 font-inter text-body text-neutral-900 hover:bg-primary/20'
 const ACTIVE_CLASS = 'bg-primary/20'
 
 export function createListbox(select) {

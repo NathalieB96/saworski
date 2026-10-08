@@ -23,7 +23,7 @@ const SITUATION_OPTIONS = [
 const GENERIC_ERROR = 'Etwas ist schiefgelaufen, bitte versuch es später erneut.'
 
 const INPUT_CLASSES = 'w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
-const CHECKBOX_CLASSES = 'size-6 shrink-0 cursor-pointer appearance-none rounded-[4px] bg-white checked:bg-[url(/icons/Check.svg)] checked:bg-no-repeat checked:bg-center'
+const CHECKBOX_CLASSES = 'size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url(/icons/Check.svg)] checked:bg-no-repeat checked:bg-center'
 const BUTTON_CLASSES = 'inline-flex items-center gap-2 justify-self-center rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-60'
 
 function errorMarkup(id) {

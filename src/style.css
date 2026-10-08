@@ -104,6 +104,18 @@ a.text-body, a.text-body-2, button.text-body, button.text-body-2 {
   white-space: nowrap;
 }
 
+/* Tailwind v4's preflight no longer sets a pointer cursor on buttons (unlike older Tailwind versions),
+   and custom-styled form controls (appearance-none) lose their native cursor behavior too. One rule here
+   instead of a cursor-pointer utility on every element, so no clickable control is ever missed. */
+button:not(:disabled),
+[role="radio"],
+[role="option"],
+[role="combobox"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
 /* Animierter Burger-Icon (CodePen "Icon 4"-Prinzip, auf die aktuelle 32x32px-Buttongröße angepasst).
    Jeder äußere Balken rotiert um die eigene Mitte statt um den linken Rand (wie im Original), damit der
    Kreuzungspunkt des X exakt in der Boxmitte liegt, unabhängig von der Boxgröße.
