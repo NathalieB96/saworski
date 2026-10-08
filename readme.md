@@ -53,6 +53,8 @@ Deployment runs via GitHub Actions (`.github/workflows/deploy.yml`) and uploads 
 
 Staging has no password protection, so every build is marked `noindex, nofollow` to keep it out of search engines; the live build never contains that tag (both are enforced by a guard step in the workflow).
 
+Releases go from staging to master through a pull request.
+
 # Kurstermine ändern oder ergänzen
 
 1. Öffne das Repository auf GitHub und gehe zur Datei src/data/kurstermine.js.
