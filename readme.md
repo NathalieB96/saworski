@@ -20,6 +20,18 @@ Um die Erfolgsansicht ohne echte Anfrage zu prüfen:
 
 Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer aus.
 
+## "Gratis testen"-Formular lokal testen
+
+Das Formular sendet an `https://gemeinsamdenmeistermeistern.de/api/community-beitritt.php`. Lokal schlägt diese Anfrage mit einem CORS-Fehler fehl, solange der Kunde `localhost` nicht freigibt.
+
+Um Erfolgs- oder Fehleransicht ohne echte Anfrage zu prüfen:
+
+1. Lege im Projektordner eine Datei `.env.local` an (Vorlage: `.env.example`).
+2. Setze `VITE_MOCK_COMMUNITY=true` für die Erfolgsansicht, oder `VITE_MOCK_COMMUNITY=error` für die Fehleransicht ("Beispielfehler").
+3. Starte `npm run dev` neu.
+
+Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer aus.
+
 ## Vor dem Launch
 
 - **AGB-Text ist ein Platzhalter.** `agb.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
