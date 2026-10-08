@@ -125,6 +125,8 @@ function wireCarousel(root) {
 }
 
 export function mountTestimonials(root) {
+  root.id = 'testimonials'
+  root.setAttribute('aria-labelledby', 'testimonials-heading')
   root.innerHTML = markup()
   wireCarousel(root)
 }
