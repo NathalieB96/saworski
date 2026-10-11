@@ -22,7 +22,7 @@ function markup() {
       <div class="flex w-full flex-col items-center gap-10" data-form-wrapper>
         <h3 class="text-center font-poppins text-h3 text-white lg:w-10/12">Jetzt anmelden und kostenlosen Testzugang zur Lernplattform sichern:</h3>
 
-        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:w-10/12" data-form>
+        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:gap-y-10 lg:w-10/12" data-form>
           <div class="flex flex-col gap-2.5">
             <label for="vorname" class="font-inter text-body text-white">Vorname*</label>
             <input type="text" id="vorname" name="vorname" autocomplete="given-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />

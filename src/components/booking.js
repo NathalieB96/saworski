@@ -112,11 +112,11 @@ function markup(initial) {
 
   return `
     <div class="mx-auto grid max-w-6xl grid-cols-1 px-6 py-12 md:py-20 lg:grid-cols-12 lg:py-32">
-      <div class="flex flex-col items-center gap-10 lg:col-span-10 lg:col-start-2">
+      <div class="flex flex-col items-center gap-10 lg:col-span-10 lg:col-start-2" data-content>
         <h1 id="buchung-heading" class="text-center font-poppins text-h1 text-white">Jetzt Platz sichern!</h1>
         <p class="text-center font-poppins text-h2 text-white">Ich brauch nur noch kurz einige Infos von dir.</p>
 
-        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10" data-form>
+        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:gap-y-10" data-form>
           ${selectMarkup('kurs', 'Welchen Kurs willst du buchen?', kursOptions, { required: true, withError: true })}
           ${selectMarkup('termin', 'Kurstermin', terminOptionsMarkup(initial.kurs, initial.terminId), { required: true, withError: true })}
 
@@ -161,7 +161,7 @@ function markup(initial) {
             <div class="flex items-start gap-2.5">
               <input type="checkbox" id="agb" name="agb" aria-required="true" class="${CHECKBOX_CLASSES}" />
               <label for="agb" class="font-inter text-body text-white">
-                Ich habe die <a href="${AGB_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Allgemeinen Geschäftsbedingungen<span class="sr-only"> (öffnet in neuem Tab)</span></a> und die <a href="${WIDERRUF_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Widerrufsbelehrung<span class="sr-only"> (öffnet in neuem Tab)</span></a> zur Kenntnis genommen und bin damit einverstanden.
+                Ich habe die <a href="${AGB_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Allgemeinen Geschäftsbedingungen<span class="sr-only"> (öffnet in neuem Tab)</span></a> und die <a href="${WIDERRUF_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Widerrufsbelehrung<span class="sr-only"> (öffnet in neuem Tab)</span></a> zur Kenntnis genommen und bin damit einverstanden.${requiredMark()}
               </label>
             </div>
             ${errorMarkup('agb')}
@@ -188,7 +188,7 @@ function successMarkup() {
   return `
     <div class="flex w-full flex-col items-center gap-6">
       <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
-      <h2 id="buchung-success-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">${SUCCESS_COPY.heading}</h2>
+      <h1 id="buchung-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">${SUCCESS_COPY.heading}</h1>
       <p class="text-center font-inter text-body text-white">${SUCCESS_COPY.text}</p>
     </div>
   `
@@ -318,12 +318,11 @@ export function mount(root) {
     submitButton.setAttribute('aria-busy', String(loading))
   }
 
-  // Erfolg ersetzt das Formular durch die Bestätigungsansicht.
+  // Erfolg ersetzt Überschrift, Einleitung und Formular durch die Bestätigungsansicht.
+  // Deren Überschrift wird die einzige h1 der Seite (gleiche id, damit aria-labelledby gültig bleibt).
   function showSuccess() {
-    const wrapper = document.createElement('div')
-    wrapper.innerHTML = successMarkup()
-    form.replaceWith(wrapper.firstElementChild)
-    root.querySelector('#buchung-success-heading').focus()
+    root.querySelector('[data-content]').innerHTML = successMarkup()
+    root.querySelector('#buchung-heading').focus()
   }
 
   form.addEventListener('submit', async (event) => {
