@@ -26,6 +26,12 @@ const SHOW_SITUATION = false
 
 const GENERIC_ERROR = 'Etwas ist schiefgelaufen, bitte versuch es später erneut.'
 
+// Erfolgsansicht nach bestätigter Buchung (buchung.php antwortet mit success === true).
+const SUCCESS_COPY = {
+  heading: 'Danke für deine Buchung!',
+  text: 'Ich habe deine Buchung erhalten und dir eine Bestätigung per E-Mail geschickt. Darin findest du alle Informationen zu deinem Kurs und die Rechnung. Schau auch im Spam-Ordner nach, falls du nichts findest.',
+}
+
 const INPUT_CLASSES = 'w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
 const CHECKBOX_CLASSES = 'size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url(/icons/Check.svg)] checked:bg-no-repeat checked:bg-center'
 const BUTTON_CLASSES = 'inline-flex items-center gap-2 justify-self-center rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-60'
@@ -179,11 +185,11 @@ function markup(initial) {
 }
 
 function successMarkup() {
-  // TODO: Erfolgsansicht aus Figma übernehmen, sobald ein Design dafür existiert. Platzhaltertext bis dahin.
   return `
-    <div class="flex w-full flex-col items-center gap-6" aria-live="polite">
+    <div class="flex w-full flex-col items-center gap-6">
       <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
-      <p class="text-center font-inter text-body text-white">Danke für deine Anmeldung! Checke dein E-Mail-Postfach für die Bestätigung und die nächsten Schritte.</p>
+      <h2 id="buchung-success-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">${SUCCESS_COPY.heading}</h2>
+      <p class="text-center font-inter text-body text-white">${SUCCESS_COPY.text}</p>
     </div>
   `
 }
@@ -317,6 +323,7 @@ export function mount(root) {
     const wrapper = document.createElement('div')
     wrapper.innerHTML = successMarkup()
     form.replaceWith(wrapper.firstElementChild)
+    root.querySelector('#buchung-success-heading').focus()
   }
 
   form.addEventListener('submit', async (event) => {
