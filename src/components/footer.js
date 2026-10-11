@@ -1,4 +1,4 @@
-import { AGB_PAGE_PATH, DATENSCHUTZ_PAGE_PATH } from '../config/paths.js'
+import { AGB_PAGE_PATH, DATENSCHUTZ_PAGE_PATH, WIDERRUF_PAGE_PATH } from '../config/paths.js'
 
 function markup() {
   const year = new Date().getFullYear()
@@ -9,6 +9,7 @@ function markup() {
         <nav aria-label="Rechtliches" class="flex items-center gap-4">
           <a href="${AGB_PAGE_PATH}">AGB</a>
           <a href="${DATENSCHUTZ_PAGE_PATH}">Datenschutz</a>
+          <a href="${WIDERRUF_PAGE_PATH}">Widerrufsbelehrung</a>
           <a href="/impressum.html">Impressum</a>
         </nav>
       </div>

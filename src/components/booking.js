@@ -1,7 +1,7 @@
 import { kurstermine } from '../data/kurstermine.js'
 import { terminLabel } from '../helpers/kurstermin-label.js'
 import { EMAIL_PATTERN, showFieldError, clearFieldError } from '../helpers/form-validation.js'
-import { AGB_PAGE_PATH, DATENSCHUTZ_PAGE_PATH } from '../config/paths.js'
+import { AGB_PAGE_PATH, DATENSCHUTZ_PAGE_PATH, WIDERRUF_PAGE_PATH } from '../config/paths.js'
 import { createListbox } from '../helpers/listbox.js'
 
 // Buchungsformular: POST an buchung.php. Der Dateiname buchung.php ist mit dem Kunden abgestimmt.
@@ -144,7 +144,7 @@ function markup(initial) {
             <div class="flex items-start gap-2.5">
               <input type="checkbox" id="agb" name="agb" aria-required="true" class="${CHECKBOX_CLASSES}" />
               <label for="agb" class="font-inter text-body text-white">
-                Ich habe die <a href="${AGB_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Allgemeinen Geschäftsbedingungen<span class="sr-only"> (öffnet in neuem Tab)</span></a> und die Widerrufsbelehrung zur Kenntnis genommen und bin damit einverstanden.
+                Ich habe die <a href="${AGB_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Allgemeinen Geschäftsbedingungen<span class="sr-only"> (öffnet in neuem Tab)</span></a> und die <a href="${WIDERRUF_PAGE_PATH}" target="_blank" rel="noopener" class="underline">Widerrufsbelehrung<span class="sr-only"> (öffnet in neuem Tab)</span></a> zur Kenntnis genommen und bin damit einverstanden.
               </label>
             </div>
             ${errorMarkup('agb')}
@@ -158,7 +158,7 @@ function markup(initial) {
           <div aria-live="polite" class="text-center font-inter text-body-2 text-white md:col-span-2" data-status></div>
 
           <button type="submit" class="${BUTTON_CLASSES} md:col-span-2" data-submit>
-            Anmelden
+            Zahlungspflichtig buchen
             <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
           </button>
         </form>

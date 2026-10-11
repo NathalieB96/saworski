@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => ({
         impressum: 'impressum.html',
         agb: 'agb.html',
         datenschutz: 'datenschutz.html',
+        widerruf: 'widerruf.html',
       }
     }
   }

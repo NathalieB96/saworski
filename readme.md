@@ -35,6 +35,7 @@ Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer a
 ## Vor dem Launch
 
 - **AGB-Text ist ein Platzhalter.** `agb.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
+- **Widerrufsbelehrung ist ein Platzhalter.** `widerruf.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
 - **Buchungsendpunkt bestätigen.** `buchung.php` ist noch nicht live. Der Ordner `/api/` und das Antwortformat `{ success, message }` müssen mit dem Kunden bestätigt werden.
 - **Situation-Optionen prüfen.** Die Schreibweise „Meisteausbildung“ bzw. „Meisterausbildung“ ist offen (siehe `SITUATION_OPTIONS` in `src/components/booking.js`).
 
