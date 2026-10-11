@@ -134,12 +134,12 @@ function markup(initial) {
 
           <div class="flex flex-col gap-2.5">
             <label for="telefon" class="font-inter text-body text-white">Telefonnummer</label>
-            <input type="tel" id="telefon" name="telefon" autocomplete="tel" class="${INPUT_CLASSES}" />
+            <input type="tel" id="telefon" name="telefon" autocomplete="tel" maxlength="60" class="${INPUT_CLASSES}" />
           </div>
 
           ${situationField}
 
-          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
+          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="absolute left-[-9999px]" />
 
           <div class="flex flex-col gap-2.5 md:col-span-2">
             <div class="flex items-start gap-2.5">

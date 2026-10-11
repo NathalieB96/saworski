@@ -25,7 +25,7 @@ function markup() {
         <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:w-10/12" data-form>
           <div class="flex flex-col gap-2.5">
             <label for="vorname" class="font-inter text-body text-white">Vorname*</label>
-            <input type="text" id="vorname" name="vorname" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="text" id="vorname" name="vorname" autocomplete="given-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="vorname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
                 <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
@@ -36,7 +36,7 @@ function markup() {
 
           <div class="flex flex-col gap-2.5">
             <label for="nachname" class="font-inter text-body text-white">Nachname*</label>
-            <input type="text" id="nachname" name="nachname" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="text" id="nachname" name="nachname" autocomplete="family-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="nachname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
                 <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
@@ -47,7 +47,7 @@ function markup() {
 
           <div class="flex flex-col gap-2.5 md:col-span-2">
             <label for="email" class="font-inter text-body text-white">E-Mail*</label>
-            <input type="email" id="email" name="email" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="email" id="email" name="email" autocomplete="email" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="email-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
                 <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
