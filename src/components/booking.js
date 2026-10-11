@@ -20,6 +20,10 @@ const SITUATION_OPTIONS = [
 ]
 // TODO: Schreibweise "Meisteausbildung" bzw. "Meisterausbildung" mit dem Kunden bestätigen.
 
+// TEMP: situation field disabled until the client defines the allowlist keys. Re-enable by setting this to true.
+// Beim Reaktivieren den Options-Wert (Key) statt des Labels senden, passend zur Backend-Allowlist (z. B. "ausbildung-gestartet").
+const SHOW_SITUATION = false
+
 const GENERIC_ERROR = 'Etwas ist schiefgelaufen, bitte versuch es später erneut.'
 
 const INPUT_CLASSES = 'w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
@@ -90,8 +94,15 @@ function markup(initial) {
   const kursOptions = kursPlaceholder + KURS_OPTIONS.map(
     (option) => `<option value="${option.value}" ${option.value === initial.kurs ? 'selected' : ''}>${option.label}</option>`
   ).join('')
-  const situationOptions = '<option value="" disabled selected>Bitte wähle eine Option</option>' +
-    SITUATION_OPTIONS.map((option) => `<option value="${option.value}">${option.label}</option>`).join('')
+  const situationField = SHOW_SITUATION
+    ? selectMarkup(
+      'situation',
+      'Was beschreibt deine aktuelle Situation am besten?',
+      '<option value="" disabled selected>Bitte wähle eine Option</option>' +
+        SITUATION_OPTIONS.map((option) => `<option value="${option.value}">${option.label}</option>`).join(''),
+      { required: false }
+    )
+    : ''
 
   return `
     <div class="mx-auto grid max-w-6xl grid-cols-1 px-6 py-12 md:py-20 lg:grid-cols-12 lg:py-32">
@@ -126,7 +137,7 @@ function markup(initial) {
             <input type="tel" id="telefon" name="telefon" autocomplete="tel" class="${INPUT_CLASSES}" />
           </div>
 
-          ${selectMarkup('situation', 'Was beschreibt deine aktuelle Situation am besten?', situationOptions, { required: false })}
+          ${situationField}
 
           <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
 
@@ -219,12 +230,12 @@ export function mount(root) {
   const terminSelect = root.querySelector('#termin')
   const kursListbox = createListbox(kursSelect)
   const terminListbox = createListbox(terminSelect)
-  createListbox(root.querySelector('#situation'))
+  const situationSelect = SHOW_SITUATION ? root.querySelector('#situation') : null
+  if (situationSelect) createListbox(situationSelect)
   const vornameInput = root.querySelector('#vorname')
   const nachnameInput = root.querySelector('#nachname')
   const emailInput = root.querySelector('#email')
   const telefonInput = root.querySelector('#telefon')
-  const situationSelect = root.querySelector('#situation')
   const datenschutzCheckbox = root.querySelector('#datenschutz')
   const agbCheckbox = root.querySelector('#agb')
   const honeypot = form.querySelector('input[name="website"]')
@@ -278,7 +289,9 @@ export function mount(root) {
 
   function collectPayload() {
     const selectedTermin = kurstermine.find((entry) => entry.id === terminSelect.value)
-    const selectedSituation = SITUATION_OPTIONS.find((option) => option.value === situationSelect.value)
+    const selectedSituation = situationSelect
+      ? SITUATION_OPTIONS.find((option) => option.value === situationSelect.value)
+      : null
     return {
       course: KURS_OPTIONS.find((option) => option.value === kursSelect.value).label,
       courseID: terminSelect.value,
@@ -287,7 +300,7 @@ export function mount(root) {
       lastname: nachnameInput.value.trim(),
       email: emailInput.value.trim(),
       phone: telefonInput.value.trim(),
-      situation: selectedSituation ? selectedSituation.label : '',
+      ...(selectedSituation ? { situation: selectedSituation.label } : {}),
       termsAccepted: true,
       privacyAccepted: true,
       website: honeypot.value,

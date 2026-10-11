@@ -9,7 +9,10 @@ const FIELD_CONFIG = [
   { name: 'email', validate: (value) => EMAIL_PATTERN.test(value.trim()), message: 'Bitte gib eine gültige E-Mail-Adresse ein.' },
 ]
 
-const PRIVACY_MESSAGE = 'Bitte bestätige, dass du die Datenschutzerklärung zur Kenntnis genommen hast.'
+// Must match backend consent version community-newsletter-v1. Any change requires a new consent version on the backend.
+const NEWSLETTER_CONSENT_TEXT = 'Ja, ich möchte zusätzlich den Newsletter von Gemeinsam den Meister meistern mit Lerntipps, Neuigkeiten und Angeboten per E-Mail erhalten. Ich kann mich jederzeit wieder abmelden.'
+
+const PRIVACY_MESSAGE ='Bitte bestätige, dass du die Datenschutzerklärung zur Kenntnis genommen hast.'
 
 function markup() {
   return `
@@ -72,7 +75,7 @@ function markup() {
 
           <div class="flex items-start gap-2.5 md:col-span-2">
             <input type="checkbox" id="newsletter" name="newsletter" class="size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
-            <label for="newsletter" class="font-inter text-body text-white">Ja, schick mir Infos zu Kursen und wann ein neuer Kurs startet.</label>
+            <label for="newsletter" class="min-w-0 font-inter text-body text-white">${NEWSLETTER_CONSENT_TEXT}</label>
           </div>
 
           <div role="alert" class="font-inter text-body-2 text-white md:col-span-2" data-form-status></div>
