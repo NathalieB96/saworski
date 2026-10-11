@@ -1,3 +1,8 @@
+// id: Kürzel des Kurses, exakt wie in der Kürzel-Spalte der Terminliste. Wird nicht auf der Seite angezeigt,
+// aber in Buchungslinks (?termin=) verwendet und als courseID an buchung.php gesendet.
+// Muss pro Eintrag einmalig sein und darf nach der Veröffentlichung nicht mehr umbenannt werden.
+// pruefung, start, ende und retreat (null oder Zeitraum) bilden die Beschriftung im Termin-Dropdown der Buchungsseite und dürfen nicht fehlen.
+
 import { kurstermine } from '../data/kurstermine.js'
 import { formatDate, bookingLinkForTermin } from '../helpers/kurstermin-label.js'
 
