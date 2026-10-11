@@ -92,7 +92,7 @@ function successMarkup(wantsNewsletter) {
     <div class="flex w-full flex-col items-center gap-6">
       <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
       <h3 id="testzugang-success-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">Fast geschafft!</h3>
-      <p class="text-center font-inter text-body text-white">Wir haben dir eine E-Mail geschickt. Klicke auf den Link darin, um deine Anmeldung zu bestätigen. Danach schalten wir deinen Testzugang frei. Bist du neu bei uns, bekommst du außerdem eine E-Mail von Moodle, um dein Passwort festzulegen.</p>
+      <p class="text-center font-inter text-body text-white">Wir haben dir eine E-Mail geschickt. Bestätige darin deine Anmeldung, dann schalten wir deinen Testzugang frei.</p>
       ${wantsNewsletter ? '<p class="text-center font-inter text-body text-white">Mit dem Klick bestätigst du auch deine Newsletter-Anmeldung.</p>' : ''}
     </div>
   `
@@ -100,9 +100,11 @@ function successMarkup(wantsNewsletter) {
 
 // Erfolg/Fehler kommen aus dem Response-Body ({ success, message }), nicht aus dem HTTP-Status.
 async function sendCommunitySignup(payload) {
-  if (import.meta.env.DEV && import.meta.env.VITE_MOCK_COMMUNITY) {
+  // Env-Werte sind Strings: nur exakt 'true' oder 'error' aktivieren den Mock, alles andere (auch 'false') ist aus.
+  const mock = import.meta.env.DEV ? import.meta.env.VITE_MOCK_COMMUNITY : undefined
+  if (mock === 'true' || mock === 'error') {
     console.warn('Community request mocked, nothing was sent')
-    if (import.meta.env.VITE_MOCK_COMMUNITY === 'error') {
+    if (mock === 'error') {
       return { success: false, message: 'Beispielfehler' }
     }
     return { success: true }
