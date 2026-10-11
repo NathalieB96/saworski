@@ -9,7 +9,7 @@ const PAGES = {
   main: 'index.html',
   kurs1: 'ntg-begleitkurs.html',
   kurs2: 'ntg-kurs-retreat.html',
-  booking: 'booking.html',
+  buchung: 'buchung.html',
   impressum: 'impressum.html',
   agb: 'agb.html',
   datenschutz: 'datenschutz.html',
