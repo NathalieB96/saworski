@@ -23,7 +23,7 @@ export function createListbox(select) {
   if (select.getAttribute('aria-required') === 'true') trigger.setAttribute('aria-required', 'true')
   trigger.innerHTML = `
     <span data-trigger-text class="min-w-0 whitespace-normal break-words"></span>
-    <img src="/icons/CaretDown.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
+    <img src="/icons/CaretDown.svg" alt="" width="24" height="24" aria-hidden="true" class="size-6 shrink-0" />
   `
 
   const list = document.createElement('ul')
@@ -76,6 +76,8 @@ export function createListbox(select) {
       const check = document.createElement('img')
       check.src = '/icons/Check.svg'
       check.alt = ''
+      check.width = 24
+      check.height = 24
       check.setAttribute('aria-hidden', 'true')
       check.dataset.check = ''
       check.className = 'size-6 shrink-0'

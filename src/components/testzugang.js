@@ -28,7 +28,7 @@ function markup() {
             <input type="text" id="vorname" name="vorname" autocomplete="given-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="vorname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -39,7 +39,7 @@ function markup() {
             <input type="text" id="nachname" name="nachname" autocomplete="family-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="nachname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -50,7 +50,7 @@ function markup() {
             <input type="email" id="email" name="email" autocomplete="email" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="email-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -67,7 +67,7 @@ function markup() {
             </div>
             <p id="privacy-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -82,7 +82,7 @@ function markup() {
 
           <button type="submit" class="inline-flex items-center gap-2 justify-self-center rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-60 md:col-span-2" data-submit>
             Testzugang sichern
-            <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+            <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
           </button>
         </form>
       </div>
@@ -93,7 +93,7 @@ function markup() {
 function successMarkup(wantsNewsletter) {
   return `
     <div class="flex w-full flex-col items-center gap-6">
-      <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
+      <img src="/images/illustrations/Send-Email.svg" width="96" height="96" loading="lazy" alt="" class="h-auto w-48" />
       <h3 id="testzugang-success-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">Fast geschafft!</h3>
       <p class="text-center font-inter text-body text-white">Wir haben dir eine E-Mail geschickt. Bestätige darin deine Anmeldung, dann schalten wir deinen Testzugang frei.</p>
       ${wantsNewsletter ? '<p class="text-center font-inter text-body text-white">Mit dem Klick bestätigst du auch deine Newsletter-Anmeldung.</p>' : ''}

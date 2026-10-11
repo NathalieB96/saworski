@@ -47,7 +47,7 @@ function renderCard(testimonial, index) {
   return `
     <article role="group" aria-roledescription="slide" aria-label="${index + 1} von ${TESTIMONIALS.length}" class="flex h-auto w-72 shrink-0 snap-start flex-col gap-6 rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl border-2 border-black bg-white p-6 sm:w-80 sm:p-8">
       <div class="flex items-center gap-4">
-        <img src="${testimonial.avatar}" alt="" class="size-18 shrink-0 rounded-full border-[4px] border-primary object-cover" />
+        <img src="${testimonial.avatar}" width="150" height="150" loading="lazy" alt="" class="size-18 shrink-0 rounded-full border-[4px] border-primary object-cover" />
         <div class="flex flex-col">
           <p class="font-inter text-body text-black">${testimonial.name}</p>
           <p class="font-inter text-body text-neutral-900/60">${testimonial.role}</p>
@@ -75,7 +75,7 @@ function markup() {
             aria-label="Vorherige Bewertung"
             class="flex size-12 items-center justify-center rounded-full text-primary transition-colors hover:bg-primary/10"
           >
-            <img src="/icons/CaretLeft.svg" alt="" class="size-6" />
+            <img src="/icons/CaretLeft.svg" alt="" width="24" height="24" class="size-6" />
           </button>
           <button
             type="button"
@@ -83,7 +83,7 @@ function markup() {
             aria-label="Nächste Bewertung"
             class="flex size-12 items-center justify-center rounded-full text-primary transition-colors hover:bg-primary/10"
           >
-            <img src="/icons/CaretRight.svg" alt="" class="size-6" />
+            <img src="/icons/CaretRight.svg" alt="" width="24" height="24" class="size-6" />
           </button>
         </div>
       </div>

@@ -18,7 +18,7 @@ function renderRow(seite, item, index, openIndex) {
         <button type="button" id="${questionId}" data-index="${index}" aria-expanded="${open}" aria-controls="${answerId}" class="flex w-full items-start justify-between gap-10 py-6 text-left">
           <span class="font-poppins text-h3 text-neutral-900">${item.frage}</span>
           <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
-            <img src="/icons/${open ? 'X.svg' : 'Plus.svg'}" alt="" class="size-6" data-icon />
+            <img src="/icons/${open ? 'X.svg' : 'Plus.svg'}" alt="" width="24" height="24" class="size-6" data-icon />
           </span>
         </button>
       </h3>

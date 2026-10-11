@@ -40,7 +40,7 @@ function errorMarkup(id) {
   return `
     <p id="${id}-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
       <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-        <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+        <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
       </span>
       <span data-error-text></span>
     </p>
@@ -168,7 +168,7 @@ function markup(initial) {
           </div>
 
           <div class="flex items-start gap-2 md:col-span-2">
-            <img src="/icons/Info.svg" alt="" aria-hidden="true" class="size-8 shrink-0" />
+            <img src="/icons/Info.svg" alt="" width="32" height="32" aria-hidden="true" class="size-8 shrink-0" />
             <p class="font-inter text-body text-white">Nach deiner Anmeldung bekommst du eine Bestätigungs E-Mail. Deine Buchung wird erst nach einer Anzahlung gültig. Bitte lies alle Informationen und nächsten Schritte dazu in der E-Mail.</p>
           </div>
 
@@ -176,7 +176,7 @@ function markup(initial) {
 
           <button type="submit" class="${BUTTON_CLASSES} md:col-span-2" data-submit>
             Zahlungspflichtig buchen
-            <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+            <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
           </button>
         </form>
       </div>
@@ -187,7 +187,7 @@ function markup(initial) {
 function successMarkup() {
   return `
     <div class="flex w-full flex-col items-center gap-6">
-      <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
+      <img src="/images/illustrations/Send-Email.svg" width="96" height="96" alt="" class="h-auto w-48" />
       <h1 id="buchung-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">${SUCCESS_COPY.heading}</h1>
       <p class="text-center font-inter text-body text-white">${SUCCESS_COPY.text}</p>
     </div>

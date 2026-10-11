@@ -18,7 +18,7 @@ function renderKurseLinkRow(link, isLast) {
     <div${isLast ? '' : ' class="border-b border-neutral-500 pb-2"'}>
       <a href="${link.href}" role="menuitem" class="flex items-center justify-between gap-4 rounded-md px-2 py-1.5 -mx-2 font-inter text-body text-black transition-colors duration-150 hover:bg-primary/10">
         ${link.label}
-        <img src="/icons/CaretRight.svg" alt="" class="size-6 shrink-0" />
+        <img src="/icons/CaretRight.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
       </a>
     </div>
   `
@@ -29,7 +29,7 @@ function renderMobileKurseLinkRow(link, isLast) {
     <div${isLast ? '' : ' class="border-b border-neutral-500 pb-2"'}>
       <a href="${link.href}" class="flex items-center justify-between gap-4 font-inter text-body-2 text-black">
         ${link.label}
-        <img src="/icons/CaretRight.svg" alt="" class="size-6 shrink-0" />
+        <img src="/icons/CaretRight.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
       </a>
     </div>
   `
@@ -53,7 +53,7 @@ function markup() {
             class="flex items-center gap-2.5 font-inter text-body text-black"
           >
             Kurse
-            <img src="/icons/CaretRight.svg" alt="" class="size-4 rotate-90 transition-transform duration-150" data-kurse-caret />
+            <img src="/icons/CaretRight.svg" alt="" width="24" height="24" class="size-4 rotate-90 transition-transform duration-150" data-kurse-caret />
           </button>
           <div
             id="kurse-menu"
@@ -67,14 +67,14 @@ function markup() {
 
         <a href="${bookingHref()}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
-          <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+          <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
         </a>
       </nav>
 
       <div class="flex items-center gap-3 md:hidden">
         <a href="${bookingHref()}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Jetzt buchen
-          <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+          <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
         </a>
         <button
           type="button"
