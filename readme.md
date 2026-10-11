@@ -66,6 +66,8 @@ Deployment runs via GitHub Actions (`.github/workflows/deploy.yml`) and uploads 
 
 Staging has no password protection, so every build is marked `noindex, nofollow` to keep it out of search engines; the live build never contains that tag (both are enforced by a guard step in the workflow).
 
+Only the live build (`npm run build`) gets a canonical link on every page plus `sitemap.xml` and `robots.txt`, generated from `SITE_URL` and the `PAGES` map in `vite.config.js`. The staging build contains none of them, so crawlers can still fetch staging pages and read the noindex tag.
+
 Releases go from staging to master through a pull request.
 
 # Kurstermine ändern oder ergänzen
