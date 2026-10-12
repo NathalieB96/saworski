@@ -118,7 +118,7 @@ function renderDateBlock(termin) {
 function renderRetreatColumn(termin) {
   return `
     <div class="flex items-center gap-2">
-      <img src="/icons/Suitcase.svg" alt="" width="24" height="24" class="size-8 shrink-0" />
+      <img src="/icons/Suitcase.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
       ${renderDateBlock(termin.retreat)}
     </div>
   `
@@ -165,7 +165,7 @@ function renderDesktopRow(termin) {
         <p class="font-inter text-body-2 text-black">${renderZeitenText(termin)}</p>
       </div>
       <div class="flex items-center gap-2">
-        <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-8 shrink-0" />
+        <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
         ${renderDateBlock(termin)}
       </div>
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
@@ -195,7 +195,7 @@ function renderMobileCard(termin) {
       </div>
       <div class="flex items-start justify-between gap-4">
         <div class="flex items-center gap-2">
-          <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-8 shrink-0" />
+          <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
           ${renderDateBlock(termin)}
         </div>
         ${renderPrice(termin, true)}
