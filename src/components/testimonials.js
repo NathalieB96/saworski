@@ -1,43 +1,43 @@
 const TESTIMONIALS = [
   {
-    avatar: '/images/Avatar-female-1.png',
-    name: 'Lisa Cannon',
-    role: 'Metallmeisterin',
+    avatar: '/images/Avatar-male-4.png',
+    name: 'Markus Becker',
+    role: 'Industriemeister Metall',
     quote:
       'Ich hatte anfangs Zweifel, ob ich den Kurs neben Arbeit und Familie noch schaffe. Am Ende bin ich richtig gerne hingegangen und hatte wieder Spaß am Lernen.',
   },
   {
     avatar: '/images/Avatar-male-1.png',
     name: 'Jonas Weber',
-    role: 'Metallmeister',
+    role: 'Industriemeister Elektro',
     quote:
       'Mir hat besonders geholfen, dass wir Inhalte immer wieder in eigenen Worten erklären sollten. Dabei habe ich schnell gemerkt, ob ich etwas wirklich verstanden habe.',
   },
   {
     avatar: '/images/Avatar-female-2.png',
     name: 'Nina Hartmann',
-    role: 'Metallmeisterin',
+    role: 'Industriemeisterin Metall',
     quote:
       'Die Atmosphäre im Kurs war super angenehm. Man konnte jederzeit Fragen stellen, ohne das Gefühl zu haben, dass man etwas längst wissen müsste.',
   },
   {
     avatar: '/images/Avatar-male-2.png',
     name: 'Tobias Krüger',
-    role: 'Metallmeister',
+    role: 'Industriemeister Elektro',
     quote:
       'NTG war definitiv mein Angstfach. Nach ein paar Terminen war es zwar immer noch nicht mein Lieblingsfach, aber ich wusste endlich, wie ich an die Aufgaben rangehen muss.',
   },
   {
     avatar: '/images/Avatar-female-3.png',
-    name: 'Sarah Bergmann',
-    role: 'Metallmeisterin',
+    name: 'Lisa Bergmann',
+    role: 'Industriemeisterin Elektro',
     quote:
       'Wenn etwas nicht verständlich war, wurde es einfach nochmal anders erklärt. Gerade die Beispiele aus der Praxis haben mir dabei sehr geholfen.',
   },
   {
     avatar: '/images/Avatar-male-3.png',
     name: 'Daniel Schuster',
-    role: 'Metallmeister',
+    role: 'Industriemeister Metall',
     quote:
       'Vorher wusste ich bei vielen Aufgaben gar nicht, wo ich anfangen soll. Heute gehe ich deutlich strukturierter an die Aufgaben ran und habe viel mehr Sicherheit.',
   },
