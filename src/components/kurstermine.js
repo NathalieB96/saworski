@@ -224,9 +224,10 @@ function renderCourse(termin) {
   `
 }
 
-function renderList(filtered) {
+function renderList(filtered, seite) {
   if (filtered.length === 0) {
-    return `<p class="p-6 text-center font-inter text-body-2 text-black">Keine Termine gefunden.</p>`
+    const bp = seite === 'retreat' ? 'xl' : 'lg'
+    return `<p class="rounded-[32px] bg-white p-6 text-center font-inter text-body-2 text-black shadow-[0px_0px_30px_0px_rgba(0,0,0,0.1)] ${bp}:rounded-none ${bp}:bg-transparent ${bp}:shadow-none">Keine Termine gefunden.</p>`
   }
   return filtered.map(renderCourse).join('')
 }
@@ -294,7 +295,7 @@ function updateList(root, state) {
     state.seite === 'retreat' ? termin.retreat !== null : termin.retreat === null
   )
   const filtered = base.filter((termin) => matchesFilters(termin, state))
-  root.querySelector('[data-list]').innerHTML = renderList(filtered)
+  root.querySelector('[data-list]').innerHTML = renderList(filtered, state.seite)
   root.querySelector('[data-count]').textContent = `${filtered.length} Termine gefunden`
 }
 
