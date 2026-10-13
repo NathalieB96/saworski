@@ -41,7 +41,7 @@ function markup() {
     <a href="#main" class="sr-only z-50 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">Zum Inhalt springen</a>
 
     <div class="flex items-center justify-between bg-neutral-200 p-4 md:px-10 md:py-4">
-      <a href="/" class="font-poppins text-[32px] font-bold text-black">GDM2</a>
+      <a href="/" class="font-poppins text-[32px] font-bold text-black">GDM²</a>
 
       <nav class="hidden items-center gap-9 md:flex" aria-label="Hauptnavigation">
         <div class="relative" data-kurse-wrapper>
