@@ -88,10 +88,13 @@ h1, h2, h3, h4 {
   font-feature-settings: 'liga' off, 'clig' off;
 }
 
-/* html {
+html {
   overflow-x: hidden;
 }
-  */
+
+body {
+  overflow-wrap: anywhere;
+}
 
 .text-body, .text-body-2 {
   overflow-wrap: break-word;
