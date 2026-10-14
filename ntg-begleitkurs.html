@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -10,52 +10,59 @@
   </head>
   <body class="bg-neutral-100" data-kurs="begleitkurs">
     <header data-component="header"></header>
-    <main>
+    <main id="main" tabindex="-1" class="focus:outline-none">
 
-      <section class="mx-auto max-w-6xl px-6 py-12 md:flex md:h-[calc(100vh-var(--header-height))] md:items-center md:overflow-hidden md:py-20 lg:py-32">
+      <section id="hero" aria-labelledby="hero-heading" class="mx-auto max-w-6xl px-6 py-12 md:flex md:h-[calc(100vh-var(--header-height))] md:items-center md:overflow-hidden md:py-20 lg:py-32">
         <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
           <div class="md:order-2 md:h-full">
             <div class="overflow-hidden rounded-[32px] border-[6px] border-primary bg-neutral-100 p-7 md:h-full md:w-full md:border-[8px]">
-              <img src="/images/course-hero.jpg" alt="Auf einem Laptop sieht man einen Videocall mit mehreren Teilnehmenrn die gemeinsam für die NTG Prüfung lernen." class="h-auto w-full rounded-[4px] md:h-full md:w-full md:object-cover" />
+              <img src="/images/course-hero.jpg" width="476" height="498" fetchpriority="high" alt="Auf einem Laptop sieht man einen Videocall mit mehreren Teilnehmenrn die gemeinsam für die NTG Prüfung lernen." class="h-auto w-full rounded-[4px] md:h-full md:w-full md:object-cover" />
             </div>
           </div>
 
           <div class="md:order-1 md:flex md:h-full md:flex-col md:justify-center">
             <div class="relative">
-              <h1 class="font-poppins text-h1 text-neutral-900">
+              <h1 id="hero-heading" class="font-poppins text-h1 text-neutral-900">
                 NTG Begleitkurs – Lerne und wachse als Gruppe.
               </h1>
 
               <h4 class="mt-4 font-inter text-h4 text-neutral-900">
               In einem 20 wöchigem Kurs begleite ich dich auf deinem Weg zur NTG Prüfung. Gemeinsam in einer kleinen Gruppe wirst du optimal auf die Prüfung vorbereitet.              </h4>
 
+              <a href="#platz-sichern" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+                Zu den Terminen
+                <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
+              </a>
+
+              <!-- Kursinfo runterladen: eingeblendet, sobald die PDF-Datei vorliegt.
               <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
                 Kursinfo runterladen
-                <img src="/icons/DownloadSimple.svg" alt="" class="size-6" />
+                <img src="/icons/DownloadSimple.svg" alt="" width="24" height="24" class="size-6" />
               </a>
+              -->
             </div>
           </div>
         </div>
       </section>
 
-      <section class="bg-neutral-200">
+      <section id="keyfacts" aria-labelledby="keyfacts-heading" class="bg-neutral-200">
         <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:py-20 lg:py-32">
-          <h2 class="font-poppins text-h1 text-black">Keyfacts auf einen Blick</h2>
+          <h2 id="keyfacts-heading" class="font-poppins text-h1 text-black">Keyfacts auf einen Blick</h2>
 
           <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
             <div class="flex flex-col gap-6">
               <h2 class="font-inter text-h2 text-black">20 Wochen Programm:</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Kleine feste Gruppen – max. 7 Teilnehmende</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">In 20 Terminen fit für die Prüfung</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Gemeinsam dranbleiben – statt allein durch den Stoff zu müssen</p>
                 </li>
               </ul>
@@ -65,15 +72,15 @@
               <h2 class="font-inter text-h2 text-black">Lernplattform:</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Jederzeit lernen – mit der Lernapp zwischen den Live-Terminen</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Praxisnah lernen – mit prüfungsnahen Aufgaben und verständlichen Beispielen</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Direkter Zugang ab Buchung – sofort mit der Lernplattform starten</p>
                 </li>
               </ul>
@@ -82,10 +89,10 @@
         </div>
       </section>
 
-      <section class="bg-neutral-100">
+      <section id="begreifen-statt-bueffeln" aria-labelledby="begreifen-statt-bueffeln-heading" class="bg-neutral-100">
         <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-12 lg:grid-cols-2 md:py-20 lg:py-32">
           <div class="flex flex-col gap-5">
-            <h2 class="font-poppins text-h1 text-black">Begreifen statt büffeln.</h2>
+            <h2 id="begreifen-statt-bueffeln-heading" class="font-poppins text-h1 text-black">Begreifen statt büffeln.</h2>
             <p class="font-inter text-body text-black">
               Lernen soll nicht bedeuten, Formeln auswendig zu können und sie nach der Prüfung wieder zu vergessen. Deshalb setzen wir auf Verständnis, Struktur und viele praktische Übungen. Du entwickelst Schritt für Schritt Sicherheit in NTG und bereitest dich gemeinsam mit anderen gezielt auf deine Meisterprüfung vor. So wird Lernen nachhaltig, motivierend und erfolgreich.
             </p>
@@ -93,7 +100,7 @@
 
           <div class="flex flex-col gap-6 rounded-3xl bg-white p-6 shadow-[0px_0px_30px_0px_rgba(0,0,0,0.1)] md:p-10">
             <h3 class="font-poppins text-h2 text-black">Beispielwoche im Begleitkurs</h3>
-            <dl class="flex flex-col gap-10">
+            <dl class="flex flex-col gap-5 md:gap-10">
               <div class="flex gap-5 md:gap-10">
                 <dt class="w-30 shrink-0 font-inter text-body text-black">Täglich 5-10 Min</dt>
                 <dd class="min-w-0 flex-1 font-inter text-body text-black">kurze Wiederholungs&shy;aufgabe auf der Lernplattform</dd>

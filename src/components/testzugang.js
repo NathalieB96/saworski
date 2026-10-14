@@ -1,8 +1,7 @@
 import { EMAIL_PATTERN, showFieldError as showErrorOn, clearFieldError as clearErrorOn } from '../helpers/form-validation.js'
 
 const MOODLE_SIGNUP_URL = 'https://gemeinsamdenmeistermeistern.de/api/community-beitritt.php'
-// Request payload shape ({ firstname, email }) is assumed/unconfirmed - adjust once the client confirms the real contract.
-const NEWSLETTER_ENDPOINT_URL = 'https://gemeinsamdenmeistermeistern.de/api/newsletter.php'
+const GENERIC_ERROR = 'Das hat leider nicht geklappt. Bitte versuche es später noch einmal.'
 
 const FIELD_CONFIG = [
   { name: 'vorname', validate: (value) => value.trim() !== '', message: 'Bitte gib deinen Vornamen ein.' },
@@ -10,7 +9,10 @@ const FIELD_CONFIG = [
   { name: 'email', validate: (value) => EMAIL_PATTERN.test(value.trim()), message: 'Bitte gib eine gültige E-Mail-Adresse ein.' },
 ]
 
-const PRIVACY_MESSAGE = 'Bitte bestätige, dass du die Datenschutzerklärung zur Kenntnis genommen hast.'
+// Must match backend consent version community-newsletter-v1. Any change requires a new consent version on the backend.
+const NEWSLETTER_CONSENT_TEXT = 'Ja, ich möchte zusätzlich den Newsletter von Gemeinsam den Meister meistern mit Lerntipps, Neuigkeiten und Angeboten per E-Mail erhalten. Ich kann mich jederzeit wieder abmelden.'
+
+const PRIVACY_MESSAGE ='Bitte bestätige, dass du die Datenschutzerklärung zur Kenntnis genommen hast.'
 
 function markup() {
   return `
@@ -20,13 +22,13 @@ function markup() {
       <div class="flex w-full flex-col items-center gap-10" data-form-wrapper>
         <h3 class="text-center font-poppins text-h3 text-white lg:w-10/12">Jetzt anmelden und kostenlosen Testzugang zur Lernplattform sichern:</h3>
 
-        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:w-10/12" data-form>
+        <form novalidate class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 md:gap-x-10 lg:gap-y-10 lg:w-10/12" data-form>
           <div class="flex flex-col gap-2.5">
             <label for="vorname" class="font-inter text-body text-white">Vorname*</label>
-            <input type="text" id="vorname" name="vorname" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="text" id="vorname" name="vorname" autocomplete="given-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="vorname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -34,10 +36,10 @@ function markup() {
 
           <div class="flex flex-col gap-2.5">
             <label for="nachname" class="font-inter text-body text-white">Nachname*</label>
-            <input type="text" id="nachname" name="nachname" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="text" id="nachname" name="nachname" autocomplete="family-name" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="nachname-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
@@ -45,42 +47,42 @@ function markup() {
 
           <div class="flex flex-col gap-2.5 md:col-span-2">
             <label for="email" class="font-inter text-body text-white">E-Mail*</label>
-            <input type="email" id="email" name="email" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
+            <input type="email" id="email" name="email" autocomplete="email" required class="w-full rounded-lg bg-white p-4 font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" />
             <p id="email-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
           </div>
 
-          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute;left:-9999px" />
+          <input type="text" name="website" autocomplete="off" tabindex="-1" aria-hidden="true" class="absolute left-[-9999px]" />
 
           <div class="flex flex-col gap-2.5 md:col-span-2">
             <div class="flex items-start gap-2.5">
-              <input type="checkbox" id="privacy" name="privacy" required class="size-6 shrink-0 cursor-pointer appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
+              <input type="checkbox" id="privacy" name="privacy" required class="size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
               <label for="privacy" class="font-inter text-body text-white">
                 Ich habe die <a href="/datenschutz.html" class="underline">Datenschutzerklärung</a> zur Kenntnis genommen.*
               </label>
             </div>
             <p id="privacy-error" role="alert" class="flex items-center gap-2 font-inter text-body-2 text-white" hidden>
               <span class="flex shrink-0 items-center justify-center rounded-lg bg-secondary-light p-2">
-                <img src="/icons/WarningDiamond.svg" alt="" class="size-6" />
+                <img src="/icons/WarningDiamond.svg" alt="" width="24" height="24" class="size-6" />
               </span>
               <span data-error-text></span>
             </p>
           </div>
 
           <div class="flex items-start gap-2.5 md:col-span-2">
-            <input type="checkbox" id="newsletter" name="newsletter" class="size-6 shrink-0 cursor-pointer appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
-            <label for="newsletter" class="font-inter text-body text-white">Ja, schick mir Infos zu Kursen und wann ein neuer Kurs startet.</label>
+            <input type="checkbox" id="newsletter" name="newsletter" class="size-6 shrink-0 appearance-none rounded-[4px] bg-white checked:bg-[url('/icons/Check.svg')] checked:bg-no-repeat checked:bg-center" />
+            <label for="newsletter" class="min-w-0 font-inter text-body text-white">${NEWSLETTER_CONSENT_TEXT}</label>
           </div>
 
-          <div aria-live="polite" class="font-inter text-body-2 text-white md:col-span-2" data-form-status></div>
+          <div role="alert" class="font-inter text-body-2 text-white md:col-span-2" data-form-status></div>
 
           <button type="submit" class="inline-flex items-center gap-2 justify-self-center rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-60 md:col-span-2" data-submit>
             Testzugang sichern
-            <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+            <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
           </button>
         </form>
       </div>
@@ -88,27 +90,38 @@ function markup() {
   `
 }
 
-function successMarkup() {
+function successMarkup(wantsNewsletter) {
   return `
-    <div class="flex w-full flex-col items-center gap-6" aria-live="polite">
-      <img src="/images/illustrations/Send-Email.svg" alt="" class="h-auto w-48" />
-      <p class="text-center font-inter text-body text-white">Checke dein E-Mail Postfach für deine Testzugangsdaten.</p>
+    <div class="flex w-full flex-col items-center gap-6">
+      <img src="/images/illustrations/Send-Email.svg" width="96" height="96" loading="lazy" alt="" class="h-auto w-48" />
+      <h3 id="testzugang-success-heading" tabindex="-1" class="text-center font-poppins text-h3 text-white">Fast geschafft!</h3>
+      <p class="text-center font-inter text-body text-white">Wir haben dir eine E-Mail geschickt. Bestätige darin deine Anmeldung, dann schalten wir deinen Testzugang frei.</p>
+      ${wantsNewsletter ? '<p class="text-center font-inter text-body text-white">Mit dem Klick bestätigst du auch deine Newsletter-Anmeldung.</p>' : ''}
     </div>
   `
 }
 
-async function sendNewsletterSignup(firstname, email) {
+// Erfolg/Fehler kommen aus dem Response-Body ({ success, message }), nicht aus dem HTTP-Status.
+async function sendCommunitySignup(payload) {
+  // Env-Werte sind Strings: nur exakt 'true' oder 'error' aktivieren den Mock, alles andere (auch 'false') ist aus.
+  const mock = import.meta.env.DEV ? import.meta.env.VITE_MOCK_COMMUNITY : undefined
+  if (mock === 'true' || mock === 'error') {
+    console.warn('Community request mocked, nothing was sent')
+    if (mock === 'error') {
+      return { success: false, message: 'Beispielfehler' }
+    }
+    return { success: true }
+  }
   try {
-    const res = await fetch(NEWSLETTER_ENDPOINT_URL, {
+    const res = await fetch(MOODLE_SIGNUP_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ firstname, email }),
+      body: JSON.stringify(payload),
     })
-    if (!res.ok) {
-      console.warn('Newsletter signup failed', res.status)
-    }
-  } catch (err) {
-    console.warn('Newsletter signup failed', err)
+    const data = await res.json()
+    return { success: data.success === true, message: data.message }
+  } catch {
+    return { success: false, message: GENERIC_ERROR }
   }
 }
 
@@ -130,6 +143,7 @@ export function mount(root) {
   const emailInput = form.querySelector('#email')
 
   const touchedWithError = new Set()
+  let isSubmitting = false
 
   function fieldInput(name) {
     if (name === 'privacy') return privacyCheckbox
@@ -191,48 +205,44 @@ export function mount(root) {
   function setLoading(loading) {
     submitButton.disabled = loading
     submitButton.setAttribute('aria-busy', String(loading))
+    form.setAttribute('aria-busy', String(loading))
   }
 
   function showStatusError(message) {
     statusEl.textContent = message
   }
 
-  function showSuccessView() {
-    formWrapper.innerHTML = successMarkup()
+  function showSuccessView(wantsNewsletter) {
+    formWrapper.innerHTML = successMarkup(wantsNewsletter)
+    formWrapper.querySelector('#testzugang-success-heading').focus()
   }
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault()
+    if (isSubmitting) return
+
     statusEl.textContent = ''
     if (!validateAll()) return
 
+    isSubmitting = true
     setLoading(true)
 
-    if (newsletterCheckbox.checked) {
-      sendNewsletterSignup(vornameInput.value.trim(), emailInput.value.trim())
-    }
+    const wantsNewsletter = newsletterCheckbox.checked
+    const result = await sendCommunitySignup({
+      firstname: vornameInput.value.trim(),
+      lastname: nachnameInput.value.trim(),
+      email: emailInput.value.trim(),
+      newsletter_optin: wantsNewsletter,
+      website: honeypot.value,
+    })
 
-    try {
-      const res = await fetch(MOODLE_SIGNUP_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstname: vornameInput.value.trim(),
-          lastname: nachnameInput.value.trim(),
-          email: emailInput.value.trim(),
-          website: honeypot.value,
-        }),
-      })
-      const data = await res.json()
-      if (res.ok) {
-        showSuccessView()
-      } else {
-        showStatusError(data.message)
-      }
-    } catch {
-      showStatusError('Etwas ist schiefgelaufen, bitte versuch es später erneut.')
-    } finally {
-      setLoading(false)
+    isSubmitting = false
+    setLoading(false)
+
+    if (result.success) {
+      showSuccessView(wantsNewsletter)
+    } else {
+      showStatusError(result.message || GENERIC_ERROR)
     }
   })
 }

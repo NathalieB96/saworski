@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de">
+<html lang="de" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -10,57 +10,64 @@
   </head>
   <body class="bg-neutral-100" data-kurs="retreat">
     <header data-component="header"></header>
-    <main>
-<section class="mx-auto max-w-6xl px-6 py-12 md:flex md:h-[calc(100vh-var(--header-height))] md:items-center md:overflow-hidden md:py-20 lg:py-32">
+    <main id="main" tabindex="-1" class="focus:outline-none">
+<section id="hero" aria-labelledby="hero-heading" class="mx-auto max-w-6xl px-6 py-12 md:flex md:h-[calc(100vh-var(--header-height))] md:items-center md:overflow-hidden md:py-20 lg:py-32">
         <div class="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-12">
           <div class="md:order-2 md:h-full">
             <div class="overflow-hidden rounded-[32px] border-[6px] border-primary bg-neutral-100 p-7 md:h-full md:w-full md:border-[8px]">
-              <img src="/images/retreat-hero.jpg" alt="Mehrere Schüler schauen sich gemeinsam etwas auf dem Laptop an. Dabei wird gelacht. Sie lernen gemeinsam für die NTG Prüfung." class="h-auto w-full rounded-[4px] md:h-full md:w-full md:object-cover" />
+              <img src="/images/retreat-hero.jpg" width="476" height="498" fetchpriority="high" alt="Mehrere Schüler schauen sich gemeinsam etwas auf dem Laptop an. Dabei wird gelacht. Sie lernen gemeinsam für die NTG Prüfung." class="h-auto w-full rounded-[4px] md:h-full md:w-full md:object-cover" />
             </div>
           </div>
 
           <div class="md:order-1 md:flex md:h-full md:flex-col md:justify-center">
             <div class="relative">
-              <h1 class="font-poppins text-h1 text-neutral-900">
+              <h1 id="hero-heading" class="font-poppins text-h1 text-neutral-900">
                 NTG Kurs mit Retreat. Lerne und wachse als Gruppe.
               </h1>
               <h4 class="mt-4 font-inter text-h4 text-neutral-900">
                 Wir starten mit einem 12 wöchigen Kurs, dann geht es gemeinsam eine Woche ins intensiv Retreat.</h4>
+              <a href="#platz-sichern" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
+                Zu den Terminen
+                <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
+              </a>
+
+              <!-- Kursinfo runterladen: eingeblendet, sobald die PDF-Datei vorliegt.
               <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
                 Kursinfo runterladen
-                <img src="/icons/DownloadSimple.svg" alt="" class="size-6" />
+                <img src="/icons/DownloadSimple.svg" alt="" width="24" height="24" class="size-6" />
               </a>
+              -->
             </div>
           </div>
         </div>
       </section>
 
-      <section class="bg-neutral-200">
+      <section id="keyfacts" aria-labelledby="keyfacts-heading" class="bg-neutral-200">
         <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:py-20 lg:py-32">
-          <h2 class="font-poppins text-h1 text-black">Keyfacts auf einen Blick</h2>
+          <h2 id="keyfacts-heading" class="font-poppins text-h1 text-black">Keyfacts auf einen Blick</h2>
 
           <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
             <div class="flex flex-col gap-6">
               <h2 class="font-inter text-h2 text-black">12 Wochen Programm</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">12 interaktive Abendsessions (online)</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Gemeinsames lernen</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">persönliches Feedback</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Vorbereitung auf das Retreat damit wir dort nicht bei null starten</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Zugang zur Lernplattform ab Tag der Buchung</p>
                 </li>
               </ul>
@@ -70,23 +77,23 @@
               <h2 class="font-inter text-h2 text-black">Retreat</h2>
               <ul class="flex flex-col gap-4">
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">7 Tage Intensivkurs, 8 Unterrichtseinheiten pro Tag</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Unterkunft & Verpflegung inklusive</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Ruhe & Fokus abseits vom Alltagsstress</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">Zusammen lernen, gemeinsam bestehen</p>
                 </li>
                 <li class="flex items-center gap-2.5">
-                  <img src="/icons/CheckCircle.svg" alt="" class="size-6 shrink-0" />
+                  <img src="/icons/CheckCircle.svg" alt="" width="24" height="24" class="size-6 shrink-0" />
                   <p class="min-w-0 font-inter text-body text-black">individuelle Unterstützung</p>
                 </li>
               </ul>
@@ -95,10 +102,10 @@
         </div>
       </section>
 
-      <section id="schedule" class="bg-neutral-100">
+      <section id="schedule" aria-labelledby="schedule-heading" class="bg-neutral-100">
         <div class="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-12 lg:grid-cols-2 md:py-20 lg:py-32">
           <div class="flex flex-col gap-5 lg:sticky lg:top-24 lg:self-start">
-            <h2 class="font-poppins text-h1 text-black">Natur statt Seminarraum. Eine Woche voller Fokus</h2>
+            <h2 id="schedule-heading" class="font-poppins text-h1 text-black">Natur statt Seminarraum. Eine Woche voller Fokus</h2>
             <p class="font-inter text-body text-black">
               Keine Ablenkung durch Arbeit oder Haushalt, sondern Zeit zum Lernen, Fragen stellen und Begreifen. Gemeinsam arbeiten wir intensiv an den prüfungsrelevanten Themen, tauschen uns aus und genießen zwischendurch die Natur. So entsteht eine Lernatmosphäre, die in einem klassischen Seminarraum kaum möglich ist.
             </p>
@@ -111,7 +118,7 @@
                   <h3 class="font-poppins text-h2 text-black">Tag 1: Anreise & Ankommen</h3>
                   <p class="font-inter text-body text-black">Ankommen, durchatmen und sich als Gruppe kennenlernen</p>
                 </div>
-                <dl class="flex flex-col gap-6">
+                <dl class="flex flex-col gap-5 md:gap-10">
                   <div class="flex gap-5 md:gap-10">
                     <dt class="w-30 shrink-0 font-inter text-body text-black">14:00–16:00</dt>
                     <dd class="min-w-0 flex-1 font-inter text-body text-black">Anreise</dd>
@@ -134,7 +141,7 @@
                   <h3 class="font-poppins text-h2 text-black">Tag 2–6: Intensivtage</h3>
                   <p class="font-inter text-body text-black">Eine gute Mischung aus Lernen und Entspannung</p>
                 </div>
-                <dl class="flex flex-col gap-6">
+                <dl class="flex flex-col gap-5 md:gap-10">
                   <div class="flex gap-5 md:gap-10">
                     <dt class="w-30 shrink-0 font-inter text-body text-black">07:00–08:00</dt>
                     <dd class="min-w-0 flex-1 font-inter text-body text-black">gemeinsames Frühstück</dd>
@@ -169,7 +176,7 @@
                   <h3 class="font-poppins text-h2 text-black">Tag 7: Abschluss & Abreise</h3>
                   <p class="font-inter text-body text-black">Rückblick, Abschied und der Weg zurück nach Hause</p>
                 </div>
-                <dl class="flex flex-col gap-6">
+                <dl class="flex flex-col gap-5 md:gap-10">
                   <div class="flex gap-5 md:gap-10">
                     <dt class="w-30 shrink-0 font-inter text-body text-black">07:00–08:00</dt>
                     <dd class="min-w-0 flex-1 font-inter text-body text-black">gemeinsames Frühstück</dd>
@@ -189,6 +196,57 @@
                 </dl>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="leistungen" aria-labelledby="leistungen-heading" class="bg-neutral-200">
+        <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:py-20 lg:py-32">
+          <h2 id="leistungen-heading" class="font-poppins text-h1 text-black">Inklusiv Leistungen im Retreat</h2>
+
+          <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+            <div class="overflow-hidden rounded-[32px] border-[6px] border-primary bg-neutral-100 p-7 md:border-[8px]">
+              <img src="/images/retreat-house.jpg" width="476" height="476" loading="lazy" alt="Blockhaus im Grünen – Unterkunft des NTG-Retreats" class="h-auto w-full rounded-[4px] md:h-full md:w-full md:object-cover" />
+            </div>
+
+            <ul class="flex flex-col gap-4">
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/HouseLine.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">Unterkunft inklusive</p>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/Pepper.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">Verpflegung inklusive</p>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/BookOpen.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">Lernmaterial</p>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/UsersThree.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">Gruppenarbeit und Teambuilding</p>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/PersonSimple.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">individuelle Unterstützung</p>
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="flex shrink-0 items-center justify-center rounded-lg bg-primary/10 p-2">
+                  <img src="/icons/Binoculars.svg" alt="" width="24" height="24" class="size-6" />
+                </span>
+                <p class="min-w-0 font-inter text-body text-black">Fokus und Ruhe</p>
+              </li>
+            </ul>
           </div>
         </div>
       </section>

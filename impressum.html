@@ -9,7 +9,23 @@
   </head>
   <body class="bg-neutral-100">
     <header data-component="header"></header>
-    <main></main>
+    <main id="main" tabindex="-1" class="focus:outline-none">
+      <section id="impressum" aria-labelledby="impressum-heading" class="mx-auto max-w-6xl px-6 py-12 md:py-20 lg:py-32">
+        <h1 id="impressum-heading" class="font-poppins text-h1 text-neutral-900">Impressum</h1>
+        <div class="mt-6 flex flex-col gap-6">
+          <p class="font-inter text-body text-neutral-900">Jasper Saworski<br />
+          Grazer Platz 5<br />
+          12157 Berlin</p>
+
+          <h2 class="font-inter text-h2 text-neutral-900">Kontakt</h2>
+          <p class="font-inter text-body text-neutral-900">Telefon: <a href="tel:+4915233634525" class="underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">015233634525</a><br />
+          E-Mail: <a href="mailto:info@jasper-saworski.de" class="underline underline-offset-4 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">info@jasper-saworski.de</a></p>
+
+          <h2 class="font-inter text-h2 text-neutral-900">Verbraucher&shy;streit&shy;beilegung/Universal&shy;schlichtungs&shy;stelle</h2>
+          <p class="font-inter text-body text-neutral-900">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+        </div>
+      </section>
+    </main>
     <footer data-component="footer"></footer>
     <script type="module" src="/src/main.js"></script>
   </body>

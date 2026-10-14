@@ -20,9 +20,22 @@ Um die Erfolgsansicht ohne echte Anfrage zu prüfen:
 
 Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer aus.
 
+## "Gratis testen"-Formular lokal testen
+
+Das Formular sendet an `https://gemeinsamdenmeistermeistern.de/api/community-beitritt.php`. Lokal schlägt diese Anfrage mit einem CORS-Fehler fehl, solange der Kunde `localhost` nicht freigibt.
+
+Um Erfolgs- oder Fehleransicht ohne echte Anfrage zu prüfen:
+
+1. Lege im Projektordner eine Datei `.env.local` an (Vorlage: `.env.example`).
+2. Setze `VITE_MOCK_COMMUNITY=true` für die Erfolgsansicht, oder `VITE_MOCK_COMMUNITY=error` für die Fehleransicht ("Beispielfehler").
+3. Starte `npm run dev` neu.
+
+Der Schalter wirkt nur im Entwicklungsmodus. Im Produktions-Build ist er immer aus.
+
 ## Vor dem Launch
 
 - **AGB-Text ist ein Platzhalter.** `agb.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
+- **Widerrufsbelehrung ist ein Platzhalter.** `widerruf.html` enthält einen Platzhaltertext. Der Rechtstext kommt vom Kunden und muss vor dem Launch ersetzt werden.
 - **Buchungsendpunkt bestätigen.** `buchung.php` ist noch nicht live. Der Ordner `/api/` und das Antwortformat `{ success, message }` müssen mit dem Kunden bestätigt werden.
 - **Situation-Optionen prüfen.** Die Schreibweise „Meisteausbildung“ bzw. „Meisterausbildung“ ist offen (siehe `SITUATION_OPTIONS` in `src/components/booking.js`).
 
@@ -52,6 +65,8 @@ Deployment runs via GitHub Actions (`.github/workflows/deploy.yml`) and uploads 
 **Never commit credentials.** Secrets are only ever referenced as `${{ secrets.NAME }}` inside the workflow — never written into a file or printed in logs.
 
 Staging has no password protection, so every build is marked `noindex, nofollow` to keep it out of search engines; the live build never contains that tag (both are enforced by a guard step in the workflow).
+
+Only the live build (`npm run build`) gets a canonical link on every page plus `sitemap.xml` and `robots.txt`, generated from `SITE_URL` and the `PAGES` map in `vite.config.js`. The staging build contains none of them, so crawlers can still fetch staging pages and read the noindex tag.
 
 Releases go from staging to master through a pull request.
 

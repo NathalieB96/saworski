@@ -2,7 +2,7 @@
 // Das native select bleibt die Quelle für Wert, Validierung und Payload. Es wird per sr-only ausgeblendet.
 const TRIGGER_CLASSES = 'flex w-full items-center justify-between gap-2.5 rounded-lg bg-white p-4 text-left font-inter text-body text-neutral-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
 const LIST_CLASSES = 'absolute left-0 top-full z-10 mt-2 flex w-full flex-col gap-1 rounded-lg border-4 border-primary/20 bg-white p-2'
-const OPTION_CLASSES = 'flex cursor-pointer items-center justify-between gap-2 rounded px-2 py-1 font-inter text-body text-neutral-900 hover:bg-primary/20'
+const OPTION_CLASSES = 'flex items-center justify-between gap-2 rounded px-2 py-1 font-inter text-body text-neutral-900 hover:bg-primary/20'
 const ACTIVE_CLASS = 'bg-primary/20'
 
 export function createListbox(select) {
@@ -23,7 +23,7 @@ export function createListbox(select) {
   if (select.getAttribute('aria-required') === 'true') trigger.setAttribute('aria-required', 'true')
   trigger.innerHTML = `
     <span data-trigger-text class="min-w-0 whitespace-normal break-words"></span>
-    <img src="/icons/CaretDown.svg" alt="" aria-hidden="true" class="size-6 shrink-0" />
+    <img src="/icons/CaretDown.svg" alt="" width="24" height="24" aria-hidden="true" class="size-6 shrink-0" />
   `
 
   const list = document.createElement('ul')
@@ -76,6 +76,8 @@ export function createListbox(select) {
       const check = document.createElement('img')
       check.src = '/icons/Check.svg'
       check.alt = ''
+      check.width = 24
+      check.height = 24
       check.setAttribute('aria-hidden', 'true')
       check.dataset.check = ''
       check.className = 'size-6 shrink-0'

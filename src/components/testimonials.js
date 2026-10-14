@@ -1,43 +1,43 @@
 const TESTIMONIALS = [
   {
-    avatar: '/images/Avatar-female-1.png',
-    name: 'Lisa Cannon',
-    role: 'Metallmeisterin',
+    avatar: '/images/Avatar-male-4.png',
+    name: 'Markus Becker',
+    role: 'Industriemeister Metall',
     quote:
       'Ich hatte anfangs Zweifel, ob ich den Kurs neben Arbeit und Familie noch schaffe. Am Ende bin ich richtig gerne hingegangen und hatte wieder Spaß am Lernen.',
   },
   {
     avatar: '/images/Avatar-male-1.png',
     name: 'Jonas Weber',
-    role: 'Metallmeister',
+    role: 'Industriemeister Elektro',
     quote:
       'Mir hat besonders geholfen, dass wir Inhalte immer wieder in eigenen Worten erklären sollten. Dabei habe ich schnell gemerkt, ob ich etwas wirklich verstanden habe.',
   },
   {
     avatar: '/images/Avatar-female-2.png',
     name: 'Nina Hartmann',
-    role: 'Metallmeisterin',
+    role: 'Industriemeisterin Metall',
     quote:
       'Die Atmosphäre im Kurs war super angenehm. Man konnte jederzeit Fragen stellen, ohne das Gefühl zu haben, dass man etwas längst wissen müsste.',
   },
   {
     avatar: '/images/Avatar-male-2.png',
     name: 'Tobias Krüger',
-    role: 'Metallmeister',
+    role: 'Industriemeister Elektro',
     quote:
       'NTG war definitiv mein Angstfach. Nach ein paar Terminen war es zwar immer noch nicht mein Lieblingsfach, aber ich wusste endlich, wie ich an die Aufgaben rangehen muss.',
   },
   {
     avatar: '/images/Avatar-female-3.png',
-    name: 'Sarah Bergmann',
-    role: 'Metallmeisterin',
+    name: 'Lisa Bergmann',
+    role: 'Industriemeisterin Elektro',
     quote:
       'Wenn etwas nicht verständlich war, wurde es einfach nochmal anders erklärt. Gerade die Beispiele aus der Praxis haben mir dabei sehr geholfen.',
   },
   {
     avatar: '/images/Avatar-male-3.png',
     name: 'Daniel Schuster',
-    role: 'Metallmeister',
+    role: 'Industriemeister Metall',
     quote:
       'Vorher wusste ich bei vielen Aufgaben gar nicht, wo ich anfangen soll. Heute gehe ich deutlich strukturierter an die Aufgaben ran und habe viel mehr Sicherheit.',
   },
@@ -47,7 +47,7 @@ function renderCard(testimonial, index) {
   return `
     <article role="group" aria-roledescription="slide" aria-label="${index + 1} von ${TESTIMONIALS.length}" class="flex h-auto w-72 shrink-0 snap-start flex-col gap-6 rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl border-2 border-black bg-white p-6 sm:w-80 sm:p-8">
       <div class="flex items-center gap-4">
-        <img src="${testimonial.avatar}" alt="" class="size-18 shrink-0 rounded-full border-[4px] border-primary object-cover" />
+        <img src="${testimonial.avatar}" width="150" height="150" loading="lazy" alt="" class="size-18 shrink-0 rounded-full border-[4px] border-primary object-cover" />
         <div class="flex flex-col">
           <p class="font-inter text-body text-black">${testimonial.name}</p>
           <p class="font-inter text-body text-neutral-900/60">${testimonial.role}</p>
@@ -75,7 +75,7 @@ function markup() {
             aria-label="Vorherige Bewertung"
             class="flex size-12 items-center justify-center rounded-full text-primary transition-colors hover:bg-primary/10"
           >
-            <img src="/icons/CaretLeft.svg" alt="" class="size-6" />
+            <img src="/icons/CaretLeft.svg" alt="" width="24" height="24" class="size-6" />
           </button>
           <button
             type="button"
@@ -83,7 +83,7 @@ function markup() {
             aria-label="Nächste Bewertung"
             class="flex size-12 items-center justify-center rounded-full text-primary transition-colors hover:bg-primary/10"
           >
-            <img src="/icons/CaretRight.svg" alt="" class="size-6" />
+            <img src="/icons/CaretRight.svg" alt="" width="24" height="24" class="size-6" />
           </button>
         </div>
       </div>
@@ -125,6 +125,8 @@ function wireCarousel(root) {
 }
 
 export function mountTestimonials(root) {
+  root.id = 'testimonials'
+  root.setAttribute('aria-labelledby', 'testimonials-heading')
   root.innerHTML = markup()
   wireCarousel(root)
 }

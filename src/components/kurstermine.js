@@ -1,3 +1,8 @@
+// id: Kürzel des Kurses, exakt wie in der Kürzel-Spalte der Terminliste. Wird nicht auf der Seite angezeigt,
+// aber in Buchungslinks (?termin=) verwendet und als courseID an buchung.php gesendet.
+// Muss pro Eintrag einmalig sein und darf nach der Veröffentlichung nicht mehr umbenannt werden.
+// pruefung, start, ende und retreat (null oder Zeitraum) bilden die Beschriftung im Termin-Dropdown der Buchungsseite und dürfen nicht fehlen.
+
 import { kurstermine } from '../data/kurstermine.js'
 import { formatDate, bookingLinkForTermin } from '../helpers/kurstermin-label.js'
 
@@ -79,7 +84,7 @@ function optionButtonsHtml(options, activeValue, variant) {
       }
       return `
         <button type="button" role="radio" aria-checked="${active}" tabindex="${active ? '0' : '-1'}" data-value="${opt.value}" class="inline-flex items-center gap-2.5 rounded-lg border-2 px-2 py-1 font-inter text-body transition-colors ${active ? 'border-secondary-light bg-secondary-light text-black' : 'border-white text-white'}">
-          ${active ? '<img src="/icons/Check.svg" alt="" class="size-4" />' : ''}
+          ${active ? '<img src="/icons/Check.svg" alt="" width="24" height="24" class="size-4" />' : ''}
           ${opt.label}
         </button>
       `
@@ -91,7 +96,7 @@ function renderBadge(termin) {
   const badge = TAGESZEIT_BADGE[derivedTageszeit(termin)]
   return `
     <span class="inline-flex w-fit items-center gap-1 rounded-2xl ${badge.bg} px-2 py-1">
-      <img src="${badge.icon}" alt="" class="size-6" />
+      <img src="${badge.icon}" alt="" width="24" height="24" class="size-6" />
       <span class="font-inter text-body-2 text-black">${badge.label}</span>
     </span>
   `
@@ -113,7 +118,7 @@ function renderDateBlock(termin) {
 function renderRetreatColumn(termin) {
   return `
     <div class="flex items-center gap-2">
-      <img src="/icons/Suitcase.svg" alt="" class="size-8 shrink-0" />
+      <img src="/icons/Suitcase.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
       ${renderDateBlock(termin.retreat)}
     </div>
   `
@@ -160,14 +165,14 @@ function renderDesktopRow(termin) {
         <p class="font-inter text-body-2 text-black">${renderZeitenText(termin)}</p>
       </div>
       <div class="flex items-center gap-2">
-        <img src="/icons/CalendarDots.svg" alt="" class="size-8 shrink-0" />
+        <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
         ${renderDateBlock(termin)}
       </div>
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
       ${renderPrice(termin, false)}
       <a href="${bookingLinkForTermin(termin)}" class="${BUTTON_CLASSES} ${buttonJustifyClass(termin)}">
         Platz sichern
-        <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+        <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
       </a>
     </div>
   `
@@ -190,7 +195,7 @@ function renderMobileCard(termin) {
       </div>
       <div class="flex items-start justify-between gap-4">
         <div class="flex items-center gap-2">
-          <img src="/icons/CalendarDots.svg" alt="" class="size-8 shrink-0" />
+          <img src="/icons/CalendarDots.svg" alt="" width="24" height="24" class="size-6 md:size-8 shrink-0" />
           ${renderDateBlock(termin)}
         </div>
         ${renderPrice(termin, true)}
@@ -198,7 +203,7 @@ function renderMobileCard(termin) {
       ${termin.retreat ? renderRetreatColumn(termin) : ''}
       <a href="${bookingLinkForTermin(termin)}" class="${BUTTON_CLASSES} w-full justify-center">
         Platz sichern
-        <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+        <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
       </a>
     </div>
   `
@@ -219,9 +224,10 @@ function renderCourse(termin) {
   `
 }
 
-function renderList(filtered) {
+function renderList(filtered, seite) {
   if (filtered.length === 0) {
-    return `<p class="p-6 text-center font-inter text-body-2 text-black">Keine Termine gefunden.</p>`
+    const bp = seite === 'retreat' ? 'xl' : 'lg'
+    return `<p class="rounded-[32px] bg-white p-6 text-center font-inter text-body-2 text-black shadow-[0px_0px_30px_0px_rgba(0,0,0,0.1)] ${bp}:rounded-none ${bp}:bg-transparent ${bp}:shadow-none">Keine Termine gefunden.</p>`
   }
   return filtered.map(renderCourse).join('')
 }
@@ -273,11 +279,11 @@ function markup(state) {
         <p class="w-full text-right font-inter text-body-2 text-white">*Frühbucherpreis gültig bis 8 Wochen vor Kursstart.</p>
       </div>
 
-      <div class="flex flex-col items-center gap-6 text-center">
+      <div hidden class="flex flex-col items-center gap-6 text-center">
         <p class="font-inter text-body text-white">Du hast Interesse, aber die angebotenen Termine passen dir nicht? Teil uns mit, welche Termine dir passen würden – wir lassen dich wissen, sobald ein Kurs zu einem deiner Wunschtermine startet.</p>
         <a href="${WUNSCHTERMIN_FORM_URL}" class="inline-flex items-center gap-2 rounded-2xl bg-secondary-light px-6 py-3 font-inter text-body font-medium text-neutral-900 transition-colors duration-150 hover:bg-secondary-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900">
           Wunschtermin
-          <img src="/icons/ArrowRight.svg" alt="" class="size-6" />
+          <img src="/icons/ArrowRight.svg" alt="" width="24" height="24" class="size-6" />
         </a>
       </div>
     </div>
@@ -289,7 +295,7 @@ function updateList(root, state) {
     state.seite === 'retreat' ? termin.retreat !== null : termin.retreat === null
   )
   const filtered = base.filter((termin) => matchesFilters(termin, state))
-  root.querySelector('[data-list]').innerHTML = renderList(filtered)
+  root.querySelector('[data-list]').innerHTML = renderList(filtered, state.seite)
   root.querySelector('[data-count]').textContent = `${filtered.length} Termine gefunden`
 }
 
